@@ -1,4 +1,4 @@
-var urlBase = 'http://monkeyoclock/API';
+var urlBase = 'http://monkeyoclock.com/API';
 var extension = 'php';
 
 var userId = 0;
