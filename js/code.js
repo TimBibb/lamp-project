@@ -69,12 +69,12 @@ function doRegister()
 	var login = document.getElementById("login").value;
 	var password = document.getElementById("password").value;
 	
-//	var hash = md5( password );
+	var hash = md5( password );
 	
 	document.getElementById("registerResult").innerHTML = "";
 
-	var tmp = {firstName:firstName,lastName:lastName,login:login,password:password};
-//	var tmp = {login:login,password:hash};
+	// var tmp = {firstName:firstName,lastName:lastName,login:login,password:password};
+	var tmp = {firstName:firstName,lastName:lastName,login:login,password:hash};
 	var jsonPayload = JSON.stringify( tmp );
 	
 	var url = urlBase + '/Register.' + extension;

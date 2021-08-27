@@ -13,7 +13,7 @@ body
     color: #FFFFFF;
 }
 
-#loginDiv
+#loginDiv, #registerDiv
 {
     font-size: 30px;
     width: 70%;
@@ -55,7 +55,7 @@ body
     opacity: 50%;
 }
 
-#loginName
+#loginName, #firstName, #lastName, #login, #password
 {
 	font-size: 30px;
 }
