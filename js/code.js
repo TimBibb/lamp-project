@@ -67,7 +67,7 @@ function doRegister()
 	var firstName = document.getElementById("firstName").value;
 	var lastName = document.getElementById("lastName").value;
 	var login = document.getElementById("login").value;
-	var password = document.getElementById("loginPassword").value;
+	var password = document.getElementById("password").value;
 	
 //	var hash = md5( password );
 	
