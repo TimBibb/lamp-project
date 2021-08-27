@@ -61,11 +61,9 @@ function doLogin()
 function doRegister()
 {
 	userId = 0;
-	firstName = "";
-	lastName = "";
 	
-	var firstName = document.getElementById("firstName").value;
-	var lastName = document.getElementById("lastName").value;
+	firstName = document.getElementById("firstName").value;
+	lastName = document.getElementById("lastName").value;
 	var login = document.getElementById("login").value;
 	var password = document.getElementById("password").value;
 	
@@ -84,27 +82,8 @@ function doRegister()
 	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
 	try
 	{
-		// xhr.onreadystatechange = function() 
-		// {
-		// 	if (this.readyState == 4 && this.status == 200) 
-		// 	{
-		// 		var jsonObject = JSON.parse( xhr.responseText );
-		// 		userId = jsonObject.id;
-		
-		// 		if( userId < 1 )
-		// 		{		
-		// 			document.getElementById("registerResult").innerHTML = "User/Password combination incorrect";
-		// 			return;
-		// 		}
-		
-		// 		firstName = jsonObject.firstName;
-		// 		lastName = jsonObject.lastName;
-
-		// 		saveCookie();
-	
-		// 		window.location.href = "color.html";
-		// 	}
-		// };
+		saveCookie();
+		window.location.href = "color.html";
 		xhr.send(jsonPayload);
 	}
 	catch(err)
