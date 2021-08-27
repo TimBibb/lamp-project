@@ -61,18 +61,19 @@ function doLogin()
 function doRegister()
 {
 	userId = 0;
-	
-	firstName = document.getElementById("firstName").value;
-	lastName = document.getElementById("lastName").value;
+	firstName = "";
+	lastName = "";
+	var fName = document.getElementById("firstName").value;
+	var lName = document.getElementById("lastName").value;
 	var login = document.getElementById("login").value;
 	var password = document.getElementById("password").value;
 	
-	password = md5( password );
+	var hash = md5( password );
 	
 	document.getElementById("registerResult").innerHTML = "";
 
 	// var tmp = {firstName:firstName,lastName:lastName,login:login,password:password};
-	var tmp = {firstName:firstName,lastName:lastName,login:login,password:password};
+	var tmp = {firstName:fName,lastName:lName,login:login,password:hash};
 	var jsonPayload = JSON.stringify( tmp );
 	
 	var url = urlBase + '/Register.' + extension;
@@ -82,27 +83,6 @@ function doRegister()
 	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
 	try
 	{
-		// xhr.onreadystatechange = function() 
-		// {
-		// 	if (this.readyState == 4 && this.status == 200) 
-		// 	{
-		// 		var jsonObject = JSON.parse( xhr.responseText );
-		// 		userId = jsonObject.id;
-
-		// 		if( userId < 1 )
-		// 		{		
-		// 			document.getElementById("loginResult").innerHTML = "User/Password combination incorrect";
-		// 			return;
-		// 		}
-		
-		// 		firstName = jsonObject.firstName;
-		// 		lastName = jsonObject.lastName;
-
-		// 		saveCookie();
-	
-		// 		window.location.href = "color.html";
-		// 	}
-		// };
 		xhr.send(jsonPayload);
 		saveCookie();
 		window.location.href = "index.html"
