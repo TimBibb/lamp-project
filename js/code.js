@@ -1,4 +1,4 @@
-var urlBase = 'http://monkeyoclock.com/API';
+var urlBase = 'http://monkeyoclock/API';
 var extension = 'php';
 
 var userId = 0;
@@ -116,7 +116,7 @@ function addColor()
 	var tmp = {color:newColor,userId,userId};
 	var jsonPayload = JSON.stringify( tmp );
 
-	var url = urlBase + '/AddContacts.' + extension;
+	var url = urlBase + '/AddColor.' + extension;
 	
 	var xhr = new XMLHttpRequest();
 	xhr.open("POST", url, true);
@@ -149,7 +149,7 @@ function searchColor()
 	var tmp = {search:srch,userId:userId};
 	var jsonPayload = JSON.stringify( tmp );
 
-	var url = urlBase + '/SearchContacts.' + extension;
+	var url = urlBase + '/SearchColors.' + extension;
 	
 	var xhr = new XMLHttpRequest();
 	xhr.open("POST", url, true);
