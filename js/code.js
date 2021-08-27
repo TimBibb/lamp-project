@@ -72,7 +72,6 @@ function doRegister()
 	
 	document.getElementById("registerResult").innerHTML = "";
 
-	// var tmp = {firstName:firstName,lastName:lastName,login:login,password:password};
 	var tmp = {firstName:fName,lastName:lName,login:login,password:hash};
 	var jsonPayload = JSON.stringify( tmp );
 	
@@ -84,8 +83,7 @@ function doRegister()
 	try
 	{
 		xhr.send(jsonPayload);
-		saveCookie();
-		window.location.href = "index.html"
+		// window.location.href = "index.html"
 	}
 	catch(err)
 	{
