@@ -15,27 +15,29 @@
 	
 </head>
 <body>
+<div class="container">
+	<h1 id="title">COP 4331 LAMP Stack Demo</h1>
 
-<h1 id="title">COP 4331 LAMP Stack Demo</h1>
-
-<div id="loggedInDiv">
-	<span id="userName"></span><br />
-	<button type="button" id="logoutButton" class="btn btn-danger" onclick="doLogout();"> Log Out </button>
+	<div id="loggedInDiv">
+		<span id="userName"></span><br />
+		<button type="button" id="logoutButton" class="btn btn-danger" onclick="doLogout();"> Log Out </button>
+	</div>
+	
+	<div id="accessUIDiv">
+		<br />
+	
+		<input type="text" id="searchText" placeholder="Color To Search For"/>
+		<button type="button" id="searchColorButton" class="btn btn-primary" onclick="searchColor();"> Search Color </button><br />
+		<span id="colorSearchResult"></span>
+		<p id="colorList">
+		</p><br /><br />
+	
+		<input type="text" id="colorText" placeholder="Color To Add">
+		<button type="button" id="addColorButton" class="btn btn-primary" onclick="addColor();"> Add Color </button><br />
+		<span id="colorAddResult"></span>
+	</div>
 </div>
 
-<div id="accessUIDiv">
-	<br />
-
-	<input type="text" id="searchText" placeholder="Color To Search For"/>
-	<button type="button" id="searchColorButton" class="btn btn-primary" onclick="searchColor();"> Search Color </button><br />
-	<span id="colorSearchResult"></span>
-	<p id="colorList">
-	</p><br /><br />
-
-	<input type="text" id="colorText" placeholder="Color To Add">
-	<button type="button" id="addColorButton" class="btn btn-primary" onclick="addColor();"> Add Color </button><br />
-	<span id="colorAddResult"></span>
-</div>
 
 </body>
 </html>
