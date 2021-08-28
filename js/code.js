@@ -83,7 +83,7 @@ function doRegister()
 	try
 	{
 		xhr.send(jsonPayload);
-		// window.location.href = "index.html"
+		window.location.href = "index.html"
 	}
 	catch(err)
 	{
