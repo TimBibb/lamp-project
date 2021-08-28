@@ -9,16 +9,32 @@
 </head>
 <body>
 
-<h1 id="title">COP 4331 LAMP Stack Demo</h1>
-
-<div id="loginDiv">
+	<h1 id="title">COP 4331 LAMP Stack Demo</h1>
+	<form>
+		<div class="form-group">
+			<label for="loginName">Username</label>
+			<input type="text" class="form-control" id="loginName" aria-describedby="emailHelp" placeholder="Username">
+		</div>
+		<div class="form-group">
+			<label for="exampleInputPassword1">Password</label>
+			<input type="password" class="form-control" id="loginPassword" placeholder="Password">
+		</div>
+		<div class="form-group form-check">
+			<input type="checkbox" class="form-check-input" id="exampleCheck1">
+			<label class="form-check-label" for="exampleCheck1">Check me out</label>
+		</div>
+		<button type="button" id="loginButton" class="btn btn-primary" onclick="doLogin();">Login</button>
+		<button type="button" id="registerButton" class="btn btn-outline-primary" onclick="location.href='register.html';"> Create an Account </button>
+	</form>
+<!-- <div id="loginDiv">
+	
 	<span id="inner-title">PLEASE LOG IN</span>
 	<input type="text" id="loginName" placeholder="Username" /><br />
 	<input type="password" id="loginPassword" placeholder="Password"/><br />
 	<button type="button" id="loginButton" class="btn btn-lg btn-primary" onclick="doLogin();"> Do It </button>
 	<button type="button" id="registerButton" class="btn btn-outline-primary" onclick="location.href='register.html';"> Create an Account </button>
-	<span id="loginResult"></span>
-</div>
+	<span id="loginResult"></span> 
+</div> -->
 
 </body>
 </html>
