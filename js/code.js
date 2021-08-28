@@ -82,8 +82,14 @@ function doRegister()
 	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
 	try
 	{
+		xhr.onreadystatechange = function() 
+		{
+			if (this.readyState == 4 && this.status == 200) 
+			{
+				window.location.href = "index.html";
+			}
+		};
 		xhr.send(jsonPayload);
-		window.location.href = "index.html"
 	}
 	catch(err)
 	{
