@@ -1,5 +1,4 @@
 <?php
-
     $inData = getRequestInfo();
     
     $searchResults = "";
@@ -41,29 +40,28 @@
 
             $stmt->close();
             $conn->close();
-        }
+    }
 
-        function getRequestInfo()
-        {
-            return json_decode(file_get_contents('php://input'), true);
-        }
+    function getRequestInfo()
+    {
+        return json_decode(file_get_contents('php://input'), true);
+    }
 
-        function sendResultInfoAsJson( $obj )
-        {
-            header('Content-type: application/json');
-            echo $obj;
-        }
+    function sendResultInfoAsJson( $obj )
+    {
+        header('Content-type: application/json');
+        echo $obj;
+    }
 
-        function returnWithError( $err )
-        {
-            $retValue = '{"id":0,"firstName":"","lastName":"","error":"' . $err . '"}';
-            sendResultInfoAsJson( $retValue );
-        }
+    function returnWithError( $err )
+    {
+        $retValue = '{"id":0,"firstName":"","lastName":"","error":"' . $err . '"}';
+        sendResultInfoAsJson( $retValue );
+    }
 
-        function returnWithInfo( $searchResults )
-        {
-            $retValue = '{"results":[' . $searchResults . '],"error":""}';
-            sendResultInfoAsJson( $retValue );
-        }
-
+    function returnWithInfo( $searchResults )
+    {
+        $retValue = '{"results":[' . $searchResults . '],"error":""}';
+        sendResultInfoAsJson( $retValue );
+    }
 ?>
