@@ -1,39 +1,30 @@
-<html>
-<head>
-	<title>The NoFacebook</title>
-	<script type="text/javascript" src="js/md5.js"></script>
-	<script type="text/javascript" src="js/code.js"></script>
-    <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-	<link href="css/styles.css" rel="stylesheet">	
-
-</head>
-<body>
-	<div class="container">
-		<h1 class="text-center mt-5" id="title">The NoFacebook</h1>
-		<form class="login-form text-center mx-auto mt-5">
-			<div class="form-group">
-				<label for="loginName">Username</label>
-				<input type="text" class="form-control" id="loginName" placeholder="Username">
-			</div>
-			<div class="form-group">
-				<label for="loginPassword">Password</label>
-				<input type="password" class="form-control" id="loginPassword" placeholder="Password">
-			</div>
-			<span id="loginResult" class="p"></span> 
-			<button type="button" id="loginButton" class="btn btn-primary" onclick="doLogin();">Login</button>
-			<button type="button" id="registerButton" class="btn btn-outline-primary" onclick="location.href='register.html';"> Create an Account </button>
-		</form>
-	</div>
-<!-- <div id="loginDiv">
-	
-	<span id="inner-title">PLEASE LOG IN</span>
-	<input type="text" id="loginName" placeholder="Username" /><br />
-	<input type="password" id="loginPassword" placeholder="Password"/><br />
-	<button type="button" id="loginButton" class="btn btn-lg btn-primary" onclick="doLogin();"> Do It </button>
-	<button type="button" id="registerButton" class="btn btn-outline-primary" onclick="location.href='register.html';"> Create an Account </button>
-	<span id="loginResult"></span> 
-</div> -->
-
-</body>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Banana Peel</title>
+        <link rel="stylesheet" type="text/css" href="css/styles.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;1,300&family=Viga&display=swap" rel="stylesheet">
+    </head>
+    <body>
+    <div class="container">
+        <div class="form-container" >
+            <img class="logo" src="images/logo.svg" alt="Banana Peel Logo"/>
+            <form class="info-form" action="API/Login.php" method="POST">
+                    <h3 class="input-label">Username</h3>
+                    <input class="input" type="text" placeholder="" ></input>
+                    <h3 class="input-label">Password</h3>
+                    <input class="input" type="password"></input>
+                    <div class="button-container">
+                    <button class="submit" type="submit" onclick="doLogin()">Login</button>
+                    <a class="create" href="register.html">Or Create a New Account</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </body>
 </html>
