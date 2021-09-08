@@ -15,7 +15,7 @@
     } 
     else
     {
-        $stmt = $conn->prepare("SELECT Name from USERS where FirstName like ? and LastName like ? and UserID=?");
+        $stmt = $conn->prepare("SELECT FirstName,LastName,Phone,Email from USERS where FirstName like ? and LastName like ? and UserID=?");
         $firstName = "%" . $inData["FirstName"] . "%";
         $lastName = "%" . $inData["LastName"] . "%";
         $stmt->bind_param("ssi", $firstName, $lastName, $userId);
@@ -23,16 +23,19 @@
 
         $result = $stmt->get_result();
 
-        /* while($row = $result->fetch_assoc()) */
-        /* { */
-        /*     if( $searchCount > 0 ) */
-        /*     { */
-        /*         $searchResults .= ","; */
-        /*     } */
+         while($row = $result->fetch_assoc()) 
+         {
+            if( $searchCount > 0 ) 
+            { 
+                $searchResults .= ","; 
+            }
 
-        /*     $searchCount++; */
-        /*     $searchResults .= '"' . $row["Name"] . '"'; */
-        /* } */
+            $searchResults .= '{"FirstName:"' . $row["FirstName"];
+            $searchResults .= '","LastName:"' . $row["LastName"];
+            $searchResults .= '","Phone":"' . $row["Phone"];
+            $searchResults .= '","Email":"' . $row["Email"] . '"}';
+            $searchCount++;
+        } 
 
         if( $searchCount == 0 )
         {
