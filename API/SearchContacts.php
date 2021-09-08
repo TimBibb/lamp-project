@@ -21,16 +21,16 @@
 
         $result = $stmt->get_result();
 
-        while($row = $result->fetch_assoc())
-        {
-            if( $searchCount > 0 )
-            {
-                $searchResults .= ",";
-            }
+        /* while($row = $result->fetch_assoc()) */
+        /* { */
+        /*     if( $searchCount > 0 ) */
+        /*     { */
+        /*         $searchResults .= ","; */
+        /*     } */
 
-            $searchCount++;
-            $searchResults .= '"' . $row["Name"] . '"';
-        }
+        /*     $searchCount++; */
+        /*     $searchResults .= '"' . $row["Name"] . '"'; */
+        /* } */
 
         if( $searchCount == 0 )
         {
