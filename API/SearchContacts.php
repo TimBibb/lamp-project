@@ -1,9 +1,5 @@
 <?php
     $inData = getRequestInfo();
-
-    $firstName = inData["FirstName"];
-    $lastName = inData["LastName"];
-    $userId = inData["UserID"];
     
     $searchResults = "";
     $searchCount = 0;
@@ -18,7 +14,7 @@
         $stmt = $conn->prepare("SELECT FirstName,LastName,Phone,Email FROM CONTACTS WHERE FirstName LIKE ? AND LastName LIKE ? AND UserID=?");
         $firstName = "%" . $inData["FirstName"] . "%";
         $lastName = "%" . $inData["LastName"] . "%";
-        $stmt->bind_param("ssi", $firstName, $lastName, $userId);
+        $stmt->bind_param("ssi", $firstName, $lastName, $inData["UserID"]);
         $stmt->execute();
 
         $result = $stmt->get_result();
