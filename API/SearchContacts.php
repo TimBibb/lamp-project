@@ -1,8 +1,8 @@
 <?php
     $inData = getRequestInfo();
 
-    $firstName = inData["firstName"];
-    $lastName = inData["lastName"];
+    $firstName = inData["FirstName"];
+    $lastName = inData["LastName"];
     $userId = inData["UserID"];
     
     $searchResults = "";
