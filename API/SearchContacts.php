@@ -14,7 +14,7 @@
     } 
     else
     {
-        $stmt = $conn->prepare("select UserID from USERS where FirstName like ? and LastName like ?");
+        $stmt = $conn->prepare("select * from USERS where FirstName like ? and LastName like ?");
         $colorName = "%" . $inData["search"] . "%";
         $stmt->bind_param("ss", $firstName, $lastName);
         $stmt->execute();
