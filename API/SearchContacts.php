@@ -26,8 +26,8 @@
                 $searchResults .= ","; 
             }
 
-            $searchResults .= '{"FirstName:"' . $row["FirstName"];
-            $searchResults .= '","LastName:"' . $row["LastName"];
+            $searchResults .= '{"FirstName":"' . $row["FirstName"];
+            $searchResults .= '","LastName":"' . $row["LastName"];
             $searchResults .= '","Phone":"' . $row["Phone"];
             $searchResults .= '","Email":"' . $row["Email"] . '"}';
             $searchCount++;
