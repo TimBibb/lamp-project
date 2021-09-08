@@ -3,6 +3,7 @@
 
     $firstName = inData["firstName"];
     $lastName = inData["lastName"];
+    $userId = inData["UserID"];
     
     $searchResults = "";
     $searchCount = 0;
@@ -14,9 +15,10 @@
     } 
     else
     {
-        $stmt = $conn->prepare("select * from USERS where FirstName like ? and LastName like ?");
-        $colorName = "%" . $inData["search"] . "%";
-        $stmt->bind_param("ss", $firstName, $lastName);
+        $stmt = $conn->prepare("SELECT * from USERS where FirstName like ? and LastName like ? and UserID=?");
+        $firstName = "%" . $inData["FirstName"] . "%";
+        $lastName = "%" . $inData["LastName"] . "%";
+        $stmt->bind_param("ss", $firstName, $lastName, $userId);
         $stmt->execute();
 
         $result = $stmt->get_result();
@@ -58,7 +60,7 @@
 
     function returnWithError( $err )
     {
-        $retValue = '{"id":0,"firstName":"","lastName":"","error":"' . $err . '"}';
+        $retValue = '{"id":0,"FirstName":"","lastName":"","error":"' . $err . '"}';
         sendResultInfoAsJson( $retValue );
     }
 
