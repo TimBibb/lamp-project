@@ -13,7 +13,7 @@
 	}
 	else
 	{
-		$stmt = $conn->prepare("INSERT into Users (FirstName,LastName,Login,Password) VALUES(?,?,?,?)");
+		$stmt = $conn->prepare("INSERT into USERS (FirstName,LastName,Login,Password) VALUES(?,?,?,?)");
 		$stmt->bind_param("ssss", $firstName, $lastName, $login, $password);
 		$stmt->execute();
 		$stmt->close();
