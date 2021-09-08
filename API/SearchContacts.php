@@ -15,10 +15,10 @@
     } 
     else
     {
-        $stmt = $conn->prepare("SELECT * from USERS where FirstName like ? and LastName like ? and UserID=?");
+        $stmt = $conn->prepare("SELECT Name from USERS where FirstName like ? and LastName like ? and UserID=?");
         $firstName = "%" . $inData["FirstName"] . "%";
         $lastName = "%" . $inData["LastName"] . "%";
-        $stmt->bind_param("ss", $firstName, $lastName, $userId);
+        $stmt->bind_param("ssi", $firstName, $lastName, $userId);
         $stmt->execute();
 
         $result = $stmt->get_result();
