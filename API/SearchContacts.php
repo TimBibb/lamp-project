@@ -14,23 +14,23 @@
     } 
     else
     {
-        $stmt = $conn->prepare("select Name from Colors where FirstName like ? and LastName like ?");
+        $stmt = $conn->prepare("select * from USERS where FirstName like ? and LastName like ?");
         $colorName = "%" . $inData["search"] . "%";
         $stmt->bind_param("ss", $firstName, $lastName);
         $stmt->execute();
 
         $result = $stmt->get_result();
 
-        while($row = $result->fetch_assoc())
-        {
-            if( $searchCount > 0 )
-            {
-                $searchResults .= ",";
-            }
+        /* while($row = $result->fetch_assoc()) */
+        /* { */
+        /*     if( $searchCount > 0 ) */
+        /*     { */
+        /*         $searchResults .= ","; */
+        /*     } */
 
-            $searchCount++;
-            $searchResults .= '"' . $row["Name"] . '"';
-        }
+        /*     $searchCount++; */
+        /*     $searchResults .= '"' . $row["Name"] . '"'; */
+        /* } */
 
         if( $searchCount == 0 )
         {
