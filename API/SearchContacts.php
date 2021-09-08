@@ -1,5 +1,8 @@
 <?php
     $inData = getRequestInfo();
+
+    $firstName = inData["firstName"];
+    $lastName = inData["lastName"];
     
     $searchResults = "";
     $searchCount = 0;
@@ -11,9 +14,9 @@
     } 
     else
     {
-        $stmt = $conn->prepare("select Name from Colors where Name like ? and UserID=?");
+        $stmt = $conn->prepare("select Name from Colors where FirstName like ? and LastName like ?");
         $colorName = "%" . $inData["search"] . "%";
-        $stmt->bind_param("ss", $colorName, $inData["userId"]);
+        $stmt->bind_param("ss", $firstName, $lastName);
         $stmt->execute();
 
         $result = $stmt->get_result();
