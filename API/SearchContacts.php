@@ -15,7 +15,7 @@
     } 
     else
     {
-        $stmt = $conn->prepare("SELECT FirstName,LastName,Phone,Email from USERS where FirstName like ? and LastName like ? and UserID=?");
+        $stmt = $conn->prepare("SELECT FirstName,LastName,Phone,Email from CONTACTS where FirstName like ? and LastName like ? and UserID=?");
         $firstName = "%" . $inData["FirstName"] . "%";
         $lastName = "%" . $inData["LastName"] . "%";
         $stmt->bind_param("ssi", $firstName, $lastName, $userId);
