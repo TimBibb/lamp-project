@@ -35,12 +35,12 @@ body {
     width: 100%;
     padding: 1rem;
     font-size: 1rem;
-    caret-color: yellowgreen;
+    caret-color:#141301;
 }
 
 .input:focus {
     outline-style: none;
-    box-shadow: 0 0 7px yellowgreen;
+    box-shadow: 0 0 7px 1px #F2D443;
 }
 
 .submit {
@@ -85,6 +85,22 @@ body {
     font-style: italic;
 }
 
+.message {
+    text-align: center;
+    font-size: 1.125rem;
+    margin-bottom: 1.5rem;
+    margin-left: auto;
+    margin-right: auto;
+    padding: .5rem;
+    border-radius: 4px;
+    background-color:#DA7422;
+    width: 200px;
+}
+
+.hide {
+    opacity: 0;
+}
+
 .page-title {
     color: #F2D443;
     font-family: 'Viga', sans-serif;
@@ -95,7 +111,7 @@ body {
 }
 
 .logo{
-    padding-bottom: 2.5rem;
+    padding-bottom: 1.5rem;
 }
 
 a {

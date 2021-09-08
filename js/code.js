@@ -5,55 +5,70 @@ var userId = 0;
 var firstName = "";
 var lastName = "";
 
-function doLogin()
-{
-	userId = 0;
+function doLogin() {
+
+    userId = 0;
 	firstName = "";
 	lastName = "";
-	
-	var login = document.getElementById("loginName").value;
+
+    var login = document.getElementById("loginName").value;
 	var password = document.getElementById("loginPassword").value;
-	var hash = md5( password );
-	
-	document.getElementById("loginResult").innerHTML = "";
+    var hash = md5( password );
 
-	// var tmp = {login:login,password:password};
-	var tmp = {login:login,password:hash};
+    var loginResult = document.getElementById("loginResult");
+    loginResult.innerHTML = "-";
+    loginResult.classList.add("hide");
+
+    var tmp = {login:login,password:hash};
 	var jsonPayload = JSON.stringify( tmp );
-	
-	var url = urlBase + '/Login.' + extension;
 
-	var xhr = new XMLHttpRequest();
+    var url = urlBase + '/Login.' + extension;
+
+    var xhr = new XMLHttpRequest();
 	xhr.open("POST", url, true);
 	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-	try
+
+    try
 	{
 		xhr.onreadystatechange = function() 
 		{
-			if (this.readyState == 4 && this.status == 200) 
-			{
-				var jsonObject = JSON.parse( xhr.responseText );
-				userId = jsonObject.id;
-		
-				if( userId < 1 )
-				{		
-					document.getElementById("loginResult").innerHTML = "User/Password combination incorrect";
-					return;
-				}
-		
-				firstName = jsonObject.firstName;
-				lastName = jsonObject.lastName;
+            if (this.readyState == XMLHttpRequest.DONE) 
+			{   
+                if (this.status == 200)
+                {
+                    var jsonObject = JSON.parse( xhr.responseText );
+				    userId = jsonObject.id;
 
-				saveCookie();
+                    if( userId < 1 )
+				    {		
+					    var loginResult = document.getElementById("loginResult");
+                        loginResult.innerHTML = "Login Failed!";
+                        loginResult.classList.remove("hide");
+					    return;
+				    }
+
+                    firstName = jsonObject.firstName;
+				    lastName = jsonObject.lastName;
+
+				    saveCookie();
 	
-				window.location.href = "color.html";
+				    window.location.href = "color.html";
+                }
+                else
+                {
+                    var loginResult = document.getElementById("loginResult");
+                    loginResult.innerHTML = "Login Failed!";
+                    loginResult.classList.remove("hide"); 
+                }
 			}
 		};
 		xhr.send(jsonPayload);
 	}
 	catch(err)
 	{
-		document.getElementById("loginResult").innerHTML = err.message;
+		var loginResult = document.getElementById("loginResult");
+        loginResult.innerHTML = err.message;
+        loginResult.classList.remove("hide");
 	}
 
 }
@@ -71,6 +86,10 @@ function doRegister()
 	var hash = md5( password );
 	
 	document.getElementById("registerResult").innerHTML = "";
+    
+    var registerResult = document.getElementById("registerResult");
+    registerResult.innerHTML = "-";
+    registerResult.classList.add("hide");
 
 	var tmp = {firstName:fName,lastName:lName,login:login,password:hash};
 	var jsonPayload = JSON.stringify( tmp );
@@ -84,16 +103,27 @@ function doRegister()
 	{
 		xhr.onreadystatechange = function() 
 		{
-			if (this.readyState == 4 && this.status == 200) 
+			if (this.readyState == XMLHttpRequest.DONE) 
 			{
-				window.location.href = "index.html";
+				if (this.status == 200)
+                {
+                    window.location.href = "index.html";
+                }
+                else
+                {
+                    var registerResult = document.getElementById("registerResult");
+                    registerResult.innerHTML = "Registration Failed!";
+                    registerResult.classList.remove("hide");
+                }
 			}
 		};
 		xhr.send(jsonPayload);
 	}
 	catch(err)
 	{
-		document.getElementById("registerResult").innerHTML = err.message;
+		var registerResult = document.getElementById("registerResult");
+        registerResult.innerHTML = err.message;
+        registerResult.classList.remove("hide");
 	}
 
 }
