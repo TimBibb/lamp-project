@@ -2,7 +2,7 @@
 
 	$inData = getRequestInfo();
 	
-	$id = 0;
+	$id = "";
 	$firstName = "";
 	$lastName = "";
 
@@ -13,7 +13,7 @@
 	}
 	else
 	{
-		$stmt = $conn->prepare("SELECT UserID,FirstName,LastName FROM USERS WHERE Login=? AND Password=?");
+		$stmt = $conn->prepare("SELECT FirstName,LastName,UserID FROM USERS WHERE Login=? AND Password=?");
 		$stmt->bind_param("ss", $inData["login"], $inData["password"]);
 		$stmt->execute();
 		$result = $stmt->get_result();
