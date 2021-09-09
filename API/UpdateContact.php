@@ -20,10 +20,10 @@
         $stmt->execute();
         $stmt->close();
 
-        $stmt = $conn->prepare("INSERT into CONTACTS (ContactID,FirstName,LastName,Phone,Email,UserID) VALUES(?,?,?,?,?)");
-        $stmt->bind_param("issssi", $contactId, $firstName,$lastName,$phone,$email,$userId);
-        $stmt->execute();
-        $stmt->close();
+        $stmtAdd = $conn->prepare("INSERT into CONTACTS (ContactID,FirstName,LastName,Phone,Email,UserID) VALUES(?,?,?,?,?,?)");
+        $stmtAdd->bind_param("issssi", $contactId, $firstName,$lastName,$phone,$email,$userId);
+        $stmtAdd->execute();
+        $stmtAdd->close();
 
         $conn->close();
         returnWithError("");
