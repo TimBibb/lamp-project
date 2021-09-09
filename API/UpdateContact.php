@@ -5,6 +5,7 @@
     $lastName = $inData["LastName"];
     $phone = $inData["Phone"];
     $email = $inData["Email"];
+    $userId = $inData["UserID"];
     $contactId = $inData["ContactID"];
     
     $conn = new mysqli("localhost", "TheBeast", "WeLoveCOP4331", "smallProject");
@@ -18,6 +19,12 @@
         $stmt->bind_param("i", $contactId);
         $stmt->execute();
         $stmt->close();
+
+        $stmt = $conn->prepare("INSERT into CONTACTS (ContactID,FirstName,LastName,Phone,Email,UserID) VALUES(?,?,?,?,?)");
+        $stmt->bind_param("issssi", $contactId, $firstName,$lastName,$phone,$email,$userId);
+        $stmt->execute();
+        $stmt->close();
+
         $conn->close();
         returnWithError("");
     }
