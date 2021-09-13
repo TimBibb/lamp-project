@@ -253,3 +253,58 @@ function searchColor()
 	}
 	
 }
+
+function searchContact()
+{
+	var fName = document.getElementById("searchFirstName").value;
+	var lName = document.getElementById("searchLastName").value;
+
+	var resultHTML = "";
+	
+	//TODO: change the id in the html
+	document.getElementById("contactSearchResult").innerHTML = "";
+
+	var tmp = {FirstName: fName, LastName: lName, UserId: userId};
+	var jsonPayload = JSON.stringify( tmp );                                         
+
+	var url = urlBase + '/SearchContacts.' + extension;
+	
+	var xhr = new XMLHttpRequest();
+	xhr.open("POST", url, true);
+	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+	try
+	{
+		xhr.onreadystatechange = function() 
+		{
+			if (this.readyState == 4 && this.status == 200) 
+			{
+				document.getElementById("contactSearchResult").innerHTML = "Contact(s) has been retrieved";
+				var jsonObject = JSON.parse( xhr.responseText );
+				for( var i=0; i<jsonObject.results.length; i++ )
+				{
+					contacts[jsonObject.results[i]["ContactId"]] = jsonObject.results[i];
+					// iterate on this with <tr> and <td>
+					resultHTML += "<tr" 
+					resultHTML += ' id="' + jsonObject.results[i]["ContactId"] + '"';
+					resultHTML += "> <td>"
+					resultHTML += jsonObject.results[i]["FirstName"];
+					resultHTML += "</td> <td>"
+					resultHTML += jsonObject.results[i]["LastName"];
+					resultHTML += "</td> <td>"
+					resultHTML += jsonObject.results[i]["Phone"];
+					resultHTML += "</td> <td>"
+					resultHTML += jsonObject.results[i]["Email"];
+					resultHTML += "</td> </tr>"
+				}
+				
+				// Here is where we edit the html (pass in the contacts)
+				document.getElementById("contactsTableBody").innerHTML = resultHTML;
+			}
+		};
+		xhr.send(jsonPayload);
+	}
+	catch(err)
+	{
+		document.getElementById("contactSearchResult").innerHTML = err.message;
+	}
+}
