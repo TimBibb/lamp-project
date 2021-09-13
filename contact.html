@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banana Peel: Personal Phonebook </title>
+    <link rel="stylesheet" type="text/css" href="css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;1,300&family=Viga&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+    <div class="nav" >
+        <div>
+            <img class="login-logo" src="images/loginLogo.svg" alt="Banana Peel">
+        </div>
+        <div class="nav">
+            <input class="nav search" id="searchFirstName" type="text"></input>
+            <input class="nav search" id="searchLastName" type="text"></input>
+            <button onClick="searchContact()">Search</button>
+            <button><span class="material-icons md-light">person_add</span></button>
+        </div>
+        <div>
+            <button><span class="material-icons md-light">logout</span></button>
+        </div>
+    </div>
+    <script src="./js/mock.js"></script>
+    <script src="./js/md5.js"></script>
+    <script src="./js/code.js"></script>
+</body>
+</html>
