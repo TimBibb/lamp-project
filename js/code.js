@@ -1,9 +1,9 @@
 var urlBase = 'http://monkeyoclock.com/API';
 var extension = 'php';
 
-var userId;
-var firstName;
-var lastName;
+var userId = 0;
+var firstName = "";
+var lastName = "";
 
 function doLogin() {
 
