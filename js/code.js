@@ -137,7 +137,8 @@ function readCookie()
 {
 	userId = -1;
 	var data = document.cookie;
-	var splits = data.split(",");
+	var splits = data.split("; ");
+	
 	for(var i = 0; i < splits.length; i++) 
 	{
 		var thisOne = splits[i].trim();
@@ -155,6 +156,8 @@ function readCookie()
 			userId = parseInt( tokens[1].trim() );
 		}
 	}
+
+
 	
 	if( userId < 0 )
 	{
@@ -260,8 +263,6 @@ function searchContact()
 	
 	//TODO: change the id in the html
 	document.getElementById("contactSearchResult").innerHTML = "";
-
-	readCookie();
 
 	var tmp = {FirstName: fName, LastName: lName, UserID: userId};
 	var jsonPayload = JSON.stringify( tmp );                                         
