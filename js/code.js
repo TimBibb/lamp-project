@@ -165,7 +165,7 @@ function readCookie()
 	}
 	else
 	{
-		document.getElementById("userName").innerHTML = "Logged in as " + firstName + " " + lastName;
+		// document.getElementById("userName").innerHTML = "Logged in as " + firstName + " " + lastName;
 	}
 }
 
@@ -263,7 +263,7 @@ function searchContact()
 	
 	//TODO: change the id in the html
 	document.getElementById("contactSearchResult").innerHTML = "";
-	
+
 	readCookie();
 
 	var tmp = {FirstName: fName, LastName: lName, UserID: userId};
