@@ -4,13 +4,9 @@ var extension = 'php';
 var userId = 0;
 var firstName = "";
 var lastName = "";
+var contacts = {};
 
 function doLogin() {
-
-    userId = 0;
-	firstName = "";
-	lastName = "";
-
     var login = document.getElementById("loginName").value;
 	var password = document.getElementById("loginPassword").value;
     var hash = md5( password );
@@ -37,9 +33,9 @@ function doLogin() {
                 if (this.status == 200)
                 {
                     var jsonObject = JSON.parse( xhr.responseText );
-				    userId = jsonObject.id;
+				    userId = jsonObject.UserID;
 
-                    if( userId < 1 )
+                    if( userId < 1 && userId !== null)
 				    {		
 					    var loginResult = document.getElementById("loginResult");
                         loginResult.innerHTML = "Login Failed!";
@@ -47,12 +43,13 @@ function doLogin() {
 					    return;
 				    }
 
-                    firstName = jsonObject.firstName;
-				    lastName = jsonObject.lastName;
+                    firstName = jsonObject.FirstName;
+				    lastName = jsonObject.LastName;
 
 				    saveCookie();
 	
 				    window.location.href = "contact.html";
+					searchContact();
                 }
                 else
                 {
@@ -133,14 +130,17 @@ function saveCookie()
 	var minutes = 20;
 	var date = new Date();
 	date.setTime(date.getTime()+(minutes*60*1000));	
-	document.cookie = "firstName=" + firstName + ",lastName=" + lastName + ",userId=" + userId + ";expires=" + date.toGMTString();
+	document.cookie = "firstName=" + firstName + ";expires=" + date.toGMTString();
+	document.cookie = "lastName=" + lastName + ";expires=" + date.toGMTString();
+	document.cookie = "userId=" + userId + ";expires=" + date.toGMTString();
 }
 
 function readCookie()
 {
 	userId = -1;
 	var data = document.cookie;
-	var splits = data.split(",");
+	var splits = data.split("; ");
+	
 	for(var i = 0; i < splits.length; i++) 
 	{
 		var thisOne = splits[i].trim();
@@ -158,6 +158,8 @@ function readCookie()
 			userId = parseInt( tokens[1].trim() );
 		}
 	}
+
+
 	
 	if( userId < 0 )
 	{
@@ -165,7 +167,7 @@ function readCookie()
 	}
 	else
 	{
-		document.getElementById("userName").innerHTML = "Logged in as " + firstName + " " + lastName;
+		// document.getElementById("userName").innerHTML = "Logged in as " + firstName + " " + lastName;
 	}
 }
 
@@ -264,7 +266,9 @@ function searchContact()
 	//TODO: change the id in the html
 	document.getElementById("contactSearchResult").innerHTML = "";
 
-	var tmp = {FirstName: fName, LastName: lName, UserId: userId};
+	readCookie();
+
+	var tmp = {FirstName: fName, LastName: lName, UserID: userId};
 	var jsonPayload = JSON.stringify( tmp );                                         
 
 	var url = urlBase + '/SearchContacts.' + extension;
@@ -282,18 +286,19 @@ function searchContact()
 				var jsonObject = JSON.parse( xhr.responseText );
 				for( var i=0; i<jsonObject.results.length; i++ )
 				{
-					contacts[jsonObject.results[i]["ContactId"]] = jsonObject.results[i];
+					// TODO: add contact id to the search contacts api endpoint
+					contacts[jsonObject.results[i].ContactID] = jsonObject.results[i];
 					// iterate on this with <tr> and <td>
 					resultHTML += "<tr" 
-					resultHTML += ' id="' + jsonObject.results[i]["ContactId"] + '"';
+					resultHTML += ' id="' + jsonObject.results[i].ContactID + '"';
 					resultHTML += "> <td>"
-					resultHTML += jsonObject.results[i]["FirstName"];
+					resultHTML += jsonObject.results[i].FirstName;
 					resultHTML += "</td> <td>"
-					resultHTML += jsonObject.results[i]["LastName"];
+					resultHTML += jsonObject.results[i].LastName;
 					resultHTML += "</td> <td>"
-					resultHTML += jsonObject.results[i]["Phone"];
+					resultHTML += jsonObject.results[i].Phone;
 					resultHTML += "</td> <td>"
-					resultHTML += jsonObject.results[i]["Email"];
+					resultHTML += jsonObject.results[i].Email;
 					resultHTML += "</td> </tr>"
 				}
 				
