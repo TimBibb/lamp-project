@@ -37,7 +37,7 @@ function doLogin() {
                 if (this.status == 200)
                 {
                     var jsonObject = JSON.parse( xhr.responseText );
-				    userId = jsonObject.UserId;
+				    userId = jsonObject.UserID;
 
                     if( userId < 1 && userId !== null)
 				    {		
