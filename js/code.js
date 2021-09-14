@@ -5,6 +5,8 @@ var userId = 0;
 var firstName = "";
 var lastName = "";
 
+var contacts = {};
+
 function doLogin() {
     var login = document.getElementById("loginName").value;
 	var password = document.getElementById("loginPassword").value;
