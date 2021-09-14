@@ -282,18 +282,18 @@ function searchContact()
 				var jsonObject = JSON.parse( xhr.responseText );
 				for( var i=0; i<jsonObject.results.length; i++ )
 				{
-					contacts[jsonObject.results[i]["ContactId"]] = jsonObject.results[i];
+					contacts[jsonObject.results[i].ContactId] = jsonObject.results[i];
 					// iterate on this with <tr> and <td>
 					resultHTML += "<tr" 
-					resultHTML += ' id="' + jsonObject.results[i]["ContactId"] + '"';
+					resultHTML += ' id="' + jsonObject.results[i].ContactId + '"';
 					resultHTML += "> <td>"
-					resultHTML += jsonObject.results[i]["FirstName"];
+					resultHTML += jsonObject.results[i].FirstName;
 					resultHTML += "</td> <td>"
-					resultHTML += jsonObject.results[i]["LastName"];
+					resultHTML += jsonObject.results[i].LastName;
 					resultHTML += "</td> <td>"
-					resultHTML += jsonObject.results[i]["Phone"];
+					resultHTML += jsonObject.results[i].Phone;
 					resultHTML += "</td> <td>"
-					resultHTML += jsonObject.results[i]["Email"];
+					resultHTML += jsonObject.results[i].Email;
 					resultHTML += "</td> </tr>"
 				}
 				
