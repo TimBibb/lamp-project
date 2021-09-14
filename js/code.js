@@ -6,7 +6,6 @@ var firstName = "";
 var lastName = "";
 
 function doLogin() {
-
     var login = document.getElementById("loginName").value;
 	var password = document.getElementById("loginPassword").value;
     var hash = md5( password );
@@ -33,9 +32,9 @@ function doLogin() {
                 if (this.status == 200)
                 {
                     var jsonObject = JSON.parse( xhr.responseText );
-				    this.userId = jsonObject.UserID;
+				    userId = jsonObject.UserID;
 
-                    if( this.userId < 1 && this.userId !== null)
+                    if( userId < 1 && userId !== null)
 				    {		
 					    var loginResult = document.getElementById("loginResult");
                         loginResult.innerHTML = "Login Failed!";
@@ -43,8 +42,8 @@ function doLogin() {
 					    return;
 				    }
 
-                    this.firstName = jsonObject.FirstName;
-				    this.lastName = jsonObject.LastName;
+                    firstName = jsonObject.FirstName;
+				    lastName = jsonObject.LastName;
 
 				    saveCookie();
 	
