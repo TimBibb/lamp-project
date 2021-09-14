@@ -33,9 +33,9 @@ function doLogin() {
                 if (this.status == 200)
                 {
                     var jsonObject = JSON.parse( xhr.responseText );
-				    userId = jsonObject.UserID;
+				    this.userId = jsonObject.UserID;
 
-                    if( userId < 1 && userId !== null)
+                    if( this.userId < 1 && this.userId !== null)
 				    {		
 					    var loginResult = document.getElementById("loginResult");
                         loginResult.innerHTML = "Login Failed!";
@@ -43,8 +43,8 @@ function doLogin() {
 					    return;
 				    }
 
-                    firstName = jsonObject.firstName;
-				    lastName = jsonObject.lastName;
+                    this.firstName = jsonObject.firstName;
+				    this.lastName = jsonObject.lastName;
 
 				    saveCookie();
 	
