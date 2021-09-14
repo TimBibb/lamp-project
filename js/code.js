@@ -264,7 +264,7 @@ function searchContact()
 	//TODO: change the id in the html
 	document.getElementById("contactSearchResult").innerHTML = "";
 
-	var tmp = {FirstName: fName, LastName: lName, UserId: userId};
+	var tmp = {FirstName: fName, LastName: lName, UserID: userId};
 	var jsonPayload = JSON.stringify( tmp );                                         
 
 	var url = urlBase + '/SearchContacts.' + extension;
