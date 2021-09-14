@@ -43,8 +43,8 @@ function doLogin() {
 					    return;
 				    }
 
-                    this.firstName = jsonObject.firstName;
-				    this.lastName = jsonObject.lastName;
+                    this.firstName = jsonObject.FirstName;
+				    this.lastName = jsonObject.LastName;
 
 				    saveCookie();
 	
