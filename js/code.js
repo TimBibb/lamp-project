@@ -286,10 +286,11 @@ function searchContact()
 				var jsonObject = JSON.parse( xhr.responseText );
 				for( var i=0; i<jsonObject.results.length; i++ )
 				{
-					contacts[jsonObject.results[i].ContactId] = jsonObject.results[i];
+					// TODO: add contact id to the search contacts api endpoint
+					contacts[jsonObject.results[i].ContactID] = jsonObject.results[i];
 					// iterate on this with <tr> and <td>
 					resultHTML += "<tr" 
-					resultHTML += ' id="' + jsonObject.results[i].ContactId + '"';
+					resultHTML += ' id="' + jsonObject.results[i].ContactID + '"';
 					resultHTML += "> <td>"
 					resultHTML += jsonObject.results[i].FirstName;
 					resultHTML += "</td> <td>"
