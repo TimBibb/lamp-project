@@ -37,9 +37,9 @@ function doLogin() {
                 if (this.status == 200)
                 {
                     var jsonObject = JSON.parse( xhr.responseText );
-				    userId = jsonObject.id;
+				    userId = jsonObject.UserId;
 
-                    if( userId < 1 )
+                    if( userId < 1 && userId !== null)
 				    {		
 					    var loginResult = document.getElementById("loginResult");
                         loginResult.innerHTML = "Login Failed!";
