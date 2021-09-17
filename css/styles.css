@@ -95,7 +95,7 @@ body {
     padding: .5rem;
     border-radius: 4px;
     background-color:#DA7422;
-    width: 200px;
+    width: 225px;
 }
 
 .hide {
@@ -116,31 +116,58 @@ body {
 }
 
 .login-logo {
-    width: 75px;
-    height: 75px;
+    width: 65px;
+    height: 65px;
 }
 
 .nav {
     display: flex;
-    align-items: center;
-    justify-content: space-around;
+    margin-top: 1.5rem;
+    justify-content: center;
+    margin-bottom: 1rem;
 }
 
-.search {
+.bar {
     display: flex;
-    border-radius: 8px;
-    margin-right: 1rem;
+    width: 70%;
+}
+
+.search-first {
     border: none;
+    border-right: .125rem solid #141301;
+    border-radius: 8px;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
     width: 100%;
-    padding: .3rem;
+    padding: .375rem;
+    padding-left: 1rem;
     font-size: 1rem;
     caret-color:#141301;
 }
 
-.search:focus {
+.search-last {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    border: none;
+    width: 100%;
+    padding: .375rem;
+    padding-left: .75rem;
+    font-size: 1rem;
+    caret-color:#141301;
+}
+
+.search-first:focus {
     outline-style: none;
     box-shadow: 0 0 7px 1px #F2D443;
 }
+
+.search-last:focus {
+    outline-style: none;
+    box-shadow: 0 0 7px 1px #F2D443;
+}
+
 
 .material-icons.md-light { 
     color: rgba(255, 255, 255, 1); 
@@ -148,14 +175,119 @@ body {
 
 }
 
+.material-icons.md-dark { 
+    color:#141301;
+    font-size: 24px;
+    transition: all 0.15s;
+
+}
+
+.material-icons.md-dark:hover { 
+    color: white;
+}
+
 .material-icons.md-light.md-inactive { 
     color: rgba(255, 255, 255, 0.3); 
+}
+
+.material-icons.md-dark.md-inactive { 
+    color: rgba(0, 0, 0, 0.26); 
+}
+
+.search-icon {
+    color: #141301;
+    border: none;
+    border-left: 2px solid #141301;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    width: 100%;
+    padding: .375rem;
+    padding-left: .5rem;
+    padding-right: .5rem;
+    background-color: #F2D443;
+}
+
+.add-icon {
+    color: #141301;
+    border: none;
+    border-left: 2px solid #141301;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    width: 100%;
+    padding: .375rem;
+    padding-left: .375rem;
+    padding-right: .5rem;
+    background-color: yellowgreen;
+}
+
+.logout-icon {
+    position: fixed;
+    bottom: 15px;
+    right: 30px;
 }
 
 button {
     background: none;
     border: none;
+    cursor: pointer;
 }
+
+#contactSearchResult {
+    font-size: 1rem;
+    text-align: center;
+    border-top-right-radius: 0;
+    border-top-left-radius: 0;
+    margin-bottom: 1rem;
+    background-color: #DA7422;
+}
+
+.card {
+    font-family: 'Open Sans', sans-serif;
+    text-align: left;
+    font-size: 20px;
+    color: white;
+    border-top: 2px solid white;
+    border-top-right-radius: 1p;
+    margin: .375rem;
+    padding: 1rem;
+    box-sizing: border-box;
+}
+
+.card-name {
+    font-size: 36px; 
+    font-weight: 700;
+    margin-bottom: .75rem;
+}
+
+.card-phone {
+
+    font-size: 22px;
+    font-weight: 600;
+}
+
+.card-phone-line {
+    margin-bottom: .25rem;
+}
+
+.card-email {
+    font-size: 22px;
+    font-weight: 600;
+}
+
+.contact-container {
+    margin: 0 auto;
+    width: 100%;
+    max-width: 1250px;
+}
+
+.contact-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill,minmax(400px,1fr));
+}
+
+
 
 a {
     color: white;
