@@ -45,6 +45,7 @@ function doLogin() {
 
                     firstName = jsonObject.FirstName;
 				    lastName = jsonObject.LastName;
+					userId = jsonObject.UserId;
 
 				    saveCookie();
 	
@@ -261,10 +262,9 @@ function searchContact()
 	var fName = document.getElementById("searchFirstName").value;
 	var lName = document.getElementById("searchLastName").value;
 
-	var resultHTML = "";
-	
-	//TODO: change the id in the html
-	document.getElementById("contactSearchResult").innerHTML = "";
+	var searchResult = document.getElementById("contactSearchResult")
+	searchResult.innerHTML = "-";
+    searchResult.classList.add("hide");
 
 	readCookie();
 
@@ -276,34 +276,25 @@ function searchContact()
 	var xhr = new XMLHttpRequest();
 	xhr.open("POST", url, true);
 	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+
 	try
 	{
 		xhr.onreadystatechange = function() 
 		{
 			if (this.readyState == 4 && this.status == 200) 
 			{
-				document.getElementById("contactSearchResult").innerHTML = "Contact(s) has been retrieved";
+				var searchResults = document.getElementById("searchResults");
+				//searchResults.innerHTML = ""
+				document.getElementById("contactSearchResult").innerHTML = "Contact(s) Retrieved";
+				searchResult.classList.remove("hide");
 				var jsonObject = JSON.parse( xhr.responseText );
-				for( var i=0; i<jsonObject.results.length; i++ )
+				for( var i=0; i<jsonObject.length; i++ )
 				{
 					// TODO: add contact id to the search contacts api endpoint
-					contacts[jsonObject.results[i].ContactID] = jsonObject.results[i];
-					// iterate on this with <tr> and <td>
-					resultHTML += "<tr" 
-					resultHTML += ' id="' + jsonObject.results[i].ContactID + '"';
-					resultHTML += "> <td>"
-					resultHTML += jsonObject.results[i].FirstName;
-					resultHTML += "</td> <td>"
-					resultHTML += jsonObject.results[i].LastName;
-					resultHTML += "</td> <td>"
-					resultHTML += jsonObject.results[i].Phone;
-					resultHTML += "</td> <td>"
-					resultHTML += jsonObject.results[i].Email;
-					resultHTML += "</td> </tr>"
+
+					var card = createContactCard(jsonObject[i]);
+					searchResults.appendChild(card);
 				}
-				
-				// Here is where we edit the html (pass in the contacts)
-				document.getElementById("contactsTableBody").innerHTML = resultHTML;
 			}
 		};
 		xhr.send(jsonPayload);
@@ -311,5 +302,28 @@ function searchContact()
 	catch(err)
 	{
 		document.getElementById("contactSearchResult").innerHTML = err.message;
+		searchResults.classList.remove("hide");
 	}
+}
+
+function createContactCard(contact) {
+
+	var cardContainer = document.createElement("div");
+	var nameElement = document.createElement("p");
+	var phoneElement = document.createElement("p");
+	var emailElement = document.createElement("p");
+
+	cardContainer.classList.add("card");
+	nameElement.classList.add("card-name");
+	phoneElement.classList.add("card-phone-line");
+
+	nameElement.innerHTML = contact.FirstName + " " + contact.LastName;
+	phoneElement.innerHTML = '<span class="card-phone">Phone:</span> ' + contact.Phone;
+	emailElement.innerHTML = '<span class="card-email">Email:</span> ' + contact.Email;
+
+	cardContainer.appendChild(nameElement);
+	cardContainer.appendChild(phoneElement);
+	cardContainer.appendChild(emailElement);
+
+	return cardContainer;
 }
