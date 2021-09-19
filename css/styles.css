@@ -129,7 +129,7 @@ body {
 
 .bar {
     display: flex;
-    width: 70%;
+    width: 75%;
 }
 
 .search-first {
@@ -172,18 +172,31 @@ body {
 .material-icons.md-light { 
     color: rgba(255, 255, 255, 1); 
     font-size: 36px;
-
+    transition: all 0.15s;
+    cursor: pointer;
 }
 
 .material-icons.md-dark { 
     color:#141301;
     font-size: 24px;
     transition: all 0.15s;
+    cursor: pointer;
 
+}
+
+.material-icons-outlined { 
+    color: rgba(255, 255, 255, 1); 
+    font-size: 24px;
+    transition: all 0.15s;
+    cursor: pointer;
 }
 
 .material-icons.md-dark:hover { 
     color: white;
+}
+
+.material-icons.md-light:hover { 
+    color: #DA7422;
 }
 
 .material-icons.md-light.md-inactive { 
@@ -287,7 +300,35 @@ button {
     grid-template-columns: repeat(auto-fill,minmax(400px,1fr));
 }
 
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, .8125);
+}
 
+.modal-content {
+    background-color: #141301;
+    margin: 20% auto;
+    border: 1px solid yellowgreen;
+    border-radius: 8px;
+    padding: 2rem;
+    width: 75%;
+}
+
+#addContactButton {
+    width: 100%;
+    margin-top: .5rem;
+}
+
+.close-icon {
+    float: right;  
+}
 
 a {
     color: white;
