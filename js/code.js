@@ -35,12 +35,20 @@ function doLogin() {
                     var jsonObject = JSON.parse( xhr.responseText );
 				    userId = jsonObject.UserID;
 
+					if (userId < 1) {
+						var loginResult = document.getElementById("loginResult");
+                    	loginResult.innerHTML = "Login Failed!";
+                    	loginResult.classList.remove("hide"); 
+						setTimeout(function(){hideAlertBannerL();}, 3000);
+						return;
+					}
+					
                     firstName = jsonObject.FirstName;
 				    lastName = jsonObject.LastName;
 					console.log(firstName);
 					console.log(lastName);
 				    saveCookie();
-	
+					readCookie();
 				    window.location.href = "contact.html";
 					searchContact();
                 }
@@ -165,7 +173,9 @@ function doLogout()
 	userId = 0;
 	firstName = "";
 	lastName = "";
-	document.cookie = "firstName= ; expires = Thu, 01 Jan 1970 00:00:00 GMT";
+	document.cookie = "firstName=" + firstName + ";expires=" + date.toGMTString();
+	document.cookie = "lastName=" + lastName + ";expires=" + date.toGMTString();
+	document.cookie = "userId=" + userId + ";expires=" + date.toGMTString();
 	window.location.href = "index.html";
 }
 
