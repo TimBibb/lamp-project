@@ -288,10 +288,10 @@ function editContact(contact)
 				searchResults.innerHTML = ""
 				document.getElementById("contactSearchResult").innerHTML = "Contact Updated";
 				searchResult.classList.remove("hide");
-				searchContact();
 				clearAddContactForm();
 				closeModal();
 				setTimeout(function(){hideAlertBanner();}, 3000);
+				searchContact();
 			}
 		};
 		xhr.send(jsonPayload);
