@@ -366,7 +366,7 @@ function searchContact()
 				var searchResults = document.getElementById("searchResults");
 				searchResults.innerHTML = ""
 				var jsonObject = JSON.parse( xhr.responseText );
-				for( var i=0; i<jsonObject.length; i++ )
+				for( var i=0; i<jsonObject.results.length; i++ )
 				{
 					// TODO: add contact id to the search contacts api endpoint
 					console.log(jsonObject.results[i]);
