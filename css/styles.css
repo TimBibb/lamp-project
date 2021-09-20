@@ -6,7 +6,7 @@
 
 
 body {
-    background-color: #141301;
+    background-color:rgb(20, 19, 1);
     font-family: 'Open Sans', sans-serif;
     color: white;
     
@@ -301,9 +301,10 @@ button {
     font-family: 'Open Sans', sans-serif;
     text-align: left;
     font-size: 20px;
+    background-color: rgb(32,32,22);
     color: white;
-    border-top: 2px solid white;
-    border-top-right-radius: 1p;
+    border: none;
+    border-radius: 8px;
     margin: .375rem;
     padding: 1rem;
     box-sizing: border-box;
@@ -331,7 +332,7 @@ button {
 }
 
 .contact-container {
-    margin: 0 auto;
+    margin: 50px auto;
     width: 100%;
     max-width: 1250px;
 }
@@ -354,11 +355,10 @@ button {
 }
 
 .modal-content {
-    background-color: #141301;
-    margin: 20% auto;
-    border: 1px solid yellowgreen;
+    background-color: rgb(20, 19, 1);
+    margin: 15% auto;
     border-radius: 8px;
-    padding: 2rem;
+    padding: 3rem;
     width: 100%;
     max-width: 500px;
 }
