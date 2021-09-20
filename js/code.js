@@ -404,6 +404,7 @@ function openAddModal() {
 function openUpdateModal(contact) {
 	var modal = document.getElementById('modalForm');
 	modal.style.display = 'block';
+	clearAddContactForm();
 	
 	setValue("fname",contact.FirstName);
 	setValue("lname",contact.LastName);
