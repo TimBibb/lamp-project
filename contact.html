@@ -31,17 +31,19 @@
     </div>
     <form id="modalForm" class="modal">
         <div class="modal-content">
-            <button id="closeButton" class="close-icon"><span class="material-icons md-light" onClick="closeModal()">close</span></button>
+            <div class="modal-close">
+                <button id="closeButton" class="close-icon"><span class="material-icons md-light" onClick="closeModal()">close</span></button>
+            </div>
             <div class="modal-form">
-                <h3 class="input-label">First Name</h3>
-                <input id="fname"  class="input" type="text">
-                <h3 class="input-label">Last Name</h3>
-                <input id="lname" class="input" type="text">
-                <h3 class="input-label">Phone</h3>
-                <input id="phone" class="input" type="text">
-                <h3 class="input-label">Email</h3>
-                <input id="email" class="input" type="text">
-                <button id="addContactButton" class="submit" type="button" onClick="addContact(); closeModal()">Add</button>
+                <h3 class="modal-label">First Name</h3>
+                <input id="fname"  class="input-modal" type="text">
+                <h3 class="modal-label">Last Name</h3>
+                <input id="lname" class="input-modal" type="text">
+                <h3 class="modal-label">Phone</h3>
+                <input id="phone" class="input-modal" type="text">
+                <h3 class="modal-label">Email</h3>
+                <input id="email" class="input-modal" type="text">
+                <button id="trigger" class="modal-add" type="button">Submit</button>
             </div>
         </div>
     </form>

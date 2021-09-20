@@ -207,6 +207,7 @@ function addContact()
 				searchResults.innerHTML = ""
 				document.getElementById("contactSearchResult").innerHTML = "Contact Added";
 				searchResult.classList.remove("hide");
+				searchContact();
 			}
 		};
 		xhr.send(jsonPayload);
@@ -220,14 +221,60 @@ function addContact()
 
 function setValue(htmlID, value) {
     document.getElementById(htmlID).value = value;
-  }
+}
 
 function clearAddContactForm() {
     setValue("fname", "");
     setValue("lname", "");
     setValue("email", "");
     setValue("phone", "");
-  }
+}
+
+function editContact(contact)
+{
+	var searchResult = document.getElementById("contactSearchResult")
+	searchResult.innerHTML = "-";
+    searchResult.classList.add("hide");
+
+	var firstName = document.getElementById("fname").value;
+	var lastName = document.getElementById("lname").value;
+	var phone = document.getElementById("phone").value;
+	var email = document.getElementById("email").value;
+
+	document.getElementById("contactSearchResult").innerHTML = "";
+
+	readCookie();
+
+	var tmp = {ContactID:contact.ContactID, FirstName:firstName,LastName:lastName,Phone:phone,Email:email,UserID:userId};
+	var jsonPayload = JSON.stringify( tmp );
+
+	var url = urlBase + '/UpdateContact.' + extension;
+	
+	var xhr = new XMLHttpRequest();
+	xhr.open("POST", url, true);
+	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+	try
+	{
+		xhr.onreadystatechange = function() 
+		{
+			if (this.readyState == 4 && this.status == 200) 
+			{
+				var searchResults = document.getElementById("searchResults");
+				searchResults.innerHTML = ""
+				document.getElementById("contactSearchResult").innerHTML = "Contact Updated";
+				searchResult.classList.remove("hide");
+				searchContact();
+				closeModal();
+			}
+		};
+		xhr.send(jsonPayload);
+	}
+	catch(err)
+	{
+		document.getElementById("contactSearchResult").innerHTML = err.message;
+	}
+	
+}
 
 function removeContact(contactId)
 {
@@ -295,8 +342,6 @@ function searchContact()
 			{
 				var searchResults = document.getElementById("searchResults");
 				searchResults.innerHTML = ""
-				document.getElementById("contactSearchResult").innerHTML = "Contact(s) Retrieved";
-				searchResult.classList.remove("hide");
 				var jsonObject = JSON.parse( xhr.responseText );
 				for( var i=0; i<jsonObject.length; i++ )
 				{
@@ -325,16 +370,25 @@ function contactModal() {
 function openAddModal() {
 	var modal = document.getElementById('modalForm');
 	modal.style.display = 'block';
+
+	var trigger = document.getElementById('trigger');
+	trigger.addEventListener('click', addContact);
+	trigger.removeEventListener('click', function(){editContact(contact)});
 	clearAddContactForm();
 }
 
 function openUpdateModal(contact) {
 	var modal = document.getElementById('modalForm');
 	modal.style.display = 'block';
+	
 	setValue("fname",contact.FirstName);
 	setValue("lname",contact.LastName);
 	setValue("phone",contact.Phone);
 	setValue("email",contact.Email);
+
+	var trigger = document.getElementById('trigger');
+	trigger.addEventListener('click', function(){editContact(contact)});
+	trigger.removeEventListener('click', addContact);
 }
 
 function closeModal() {
@@ -354,8 +408,8 @@ function createContactCard(contact) {
 	cardContainer.classList.add("card");
 	nameElement.classList.add("card-name");
 	phoneElement.classList.add("card-phone-line");
-	editElement.classList.add("submit");
-	removeElement.classList.add("submit")
+	editElement.classList.add("card-button");
+	removeElement.classList.add("card-button")
 
 	nameElement.innerHTML = contact.FirstName + " " + contact.LastName;
 	phoneElement.innerHTML = '<span class="card-phone">Phone:</span> ' + contact.Phone;
