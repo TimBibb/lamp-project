@@ -42,7 +42,7 @@ function doLogin() {
 						setTimeout(function(){hideAlertBannerL();}, 3000);
 						return;
 					}
-					
+
                     firstName = jsonObject.FirstName;
 				    lastName = jsonObject.LastName;
 					console.log(firstName);
@@ -451,6 +451,8 @@ function createContactCard(contact) {
 	cardContainer.appendChild(nameElement);
 	cardContainer.appendChild(phoneElement);
 	cardContainer.appendChild(emailElement);
+
+	console.log(contact.FirstName);
 
 	return cardContainer;
 }
