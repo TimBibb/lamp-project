@@ -9,12 +9,14 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;1,300&family=Viga&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+        <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
     </head>
     <body>
-        <div class="container">
-            <div class="form-container" >
-                <img class="logo" src="images/logo.svg" alt="Banana Peel Logo"/>
-                <p id="loginResult" class="message hide">-</p>
+        <div class="container animate__animated animate__fadeIn">
+            <img class="logo" src="images/logo.svg" alt="Banana Peel Logo"/>
+            <div class="form-container">
+                <p id="loginResult" class="animate__animated animate__shakeX message hide">-</p>
                 <form class="info-form">
                     <h3 class="input-label">Username</h3>
                     <input id="loginName" class="input" type="text" placeholder="" ></input>

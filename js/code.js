@@ -35,14 +35,6 @@ function doLogin() {
                     var jsonObject = JSON.parse( xhr.responseText );
 				    userId = jsonObject.UserID;
 
-                    if( userId < 1 && userId !== null)
-				    {		
-					    var loginResult = document.getElementById("loginResult");
-                        loginResult.innerHTML = "Login Failed!";
-                        loginResult.classList.remove("hide");
-					    return;
-				    }
-
                     firstName = jsonObject.FirstName;
 				    lastName = jsonObject.LastName;
 
@@ -56,6 +48,7 @@ function doLogin() {
                     var loginResult = document.getElementById("loginResult");
                     loginResult.innerHTML = "Login Failed!";
                     loginResult.classList.remove("hide"); 
+					setTimeout(function(){hideAlertBannerL();}, 3000);
                 }
 			}
 		};
@@ -111,6 +104,7 @@ function doRegister()
                     var registerResult = document.getElementById("registerResult");
                     registerResult.innerHTML = "Registration Failed!";
                     registerResult.classList.remove("hide");
+					setTimeout(function(){hideAlertBannerR();}, 3000);
                 }
 			}
 		};
@@ -209,7 +203,7 @@ function addContact()
 				searchResult.classList.remove("hide");
 				closeModal();
 				searchContact();
-				setTimeout(function(){hideAlertBanner();}, 5000);
+				setTimeout(function(){hideAlertBanner();}, 3000);
 			}
 		};
 		xhr.send(jsonPayload);
@@ -230,6 +224,18 @@ function clearAddContactForm() {
     setValue("lname", "");
     setValue("email", "");
     setValue("phone", "");
+}
+
+function hideAlertBannerL() {
+	var loginResult = document.getElementById("loginResult")
+	loginResult.innerHTML = "-";
+    loginResult.classList.add("hide");
+  }
+
+function hideAlertBannerR() {
+	var registerResult = document.getElementById("registerResult")
+	registerResult.innerHTML = "-";
+	registerResult.classList.add("hide");
 }
 
 function hideAlertBanner() {
@@ -273,7 +279,7 @@ function editContact(contact)
 				searchResult.classList.remove("hide");
 				searchContact();
 				closeModal();
-				setTimeout(function(){hideAlertBanner();}, 5000);
+				setTimeout(function(){hideAlertBanner();}, 3000);
 			}
 		};
 		xhr.send(jsonPayload);
@@ -312,7 +318,7 @@ function removeContact(contactId)
 				document.getElementById("contactSearchResult").innerHTML = "Contact Deleted";
 				searchResult.classList.remove("hide");
 				searchContact();
-				setTimeout(function(){hideAlertBanner();}, 5000);
+				setTimeout(function(){hideAlertBanner();}, 3000);
 			}
 		};
 		xhr.send(jsonPayload);

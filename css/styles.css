@@ -17,7 +17,7 @@ body {
     align-items: center;
     flex-direction: column;
     justify-content: center;
-    height: 85vh;
+    height: 90vh;
 }
 
 .form-container {
@@ -122,12 +122,8 @@ body {
     font-style: italic;
 }
 
-.modal-label {
-    margin-bottom: .375rem;
-    font-weight: 300; 
-}
-
 .message {
+    display: block;
     text-align: center;
     font-size: 1.125rem;
     margin-bottom: 1.5rem;
@@ -137,6 +133,8 @@ body {
     border-radius: 4px;
     background-color:#DA7422;
     width: 225px;
+    animation-delay: 1s;
+    transition: all 0.15s;
 }
 
 .hide {
@@ -146,13 +144,9 @@ body {
 .page-title {
     color: #F2D443;
     font-family: 'Viga', sans-serif;
-    font-size: 5rem;
+    font-size: 6rem;
     display: flex;
     justify-content: center;
-    padding-bottom: 1.5rem;
-}
-
-.logo {
     padding-bottom: 1.5rem;
 }
 
@@ -175,7 +169,7 @@ body {
 
 .search-first {
     border: none;
-    border-right: .125rem solid #141301;
+    border-right: .125rem solid rgb(20, 19, 1);
     border-radius: 8px;
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
@@ -218,7 +212,7 @@ body {
 }
 
 .material-icons.md-dark { 
-    color:#141301;
+    color: rgb(20, 19, 1);
     font-size: 24px;
     transition: all 0.15s;
     cursor: pointer;
@@ -233,7 +227,7 @@ body {
 }
 
 .material-icons-outlined:hover {
-    color: white;
+    color: #DA7422;
     cursor: pointer;
 }
 
@@ -254,9 +248,9 @@ body {
 }
 
 .search-icon {
-    color: #141301;
+    color: rgb(20, 19, 1);
     border: none;
-    border-left: 2px solid #141301;
+    border-left: 2px solid rgb(20, 19, 1);
     margin-top: 1rem;
     margin-bottom: 1rem;
     width: 100%;
@@ -269,7 +263,7 @@ body {
 .add-icon {
     color: #141301;
     border: none;
-    border-left: 2px solid #141301;
+    border-left: 2px solid rgb(20, 19, 1);
     border-top-right-radius: 8px;
     border-bottom-right-radius: 8px;
     margin-top: 1rem;
@@ -320,7 +314,7 @@ button {
 }
 
 .card-name {
-    font-size: 28px; 
+    font-size: 26px; 
     font-weight: 700;
     margin-bottom: .75rem;
 }

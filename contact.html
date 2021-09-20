@@ -11,11 +11,13 @@
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;1,300;1,600;1,700&family=Viga&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
 </head>
 <body>
-    <p id="contactSearchResult" class="message hide"></p>
+    <p id="contactSearchResult" class="animate__animated animate__tada message hide"></p>
     <div class="nav">
-        <div class="bar" >
+        <div class="bar animate__animated animate__fadeInDown" >
             <input class="nav search-first" id="searchFirstName" type="text" placeholder="First Name"></input>
             <input class="nav search-last" id="searchLastName" type="text" placeholder="Last Name"></input>
             <button><span class="material-icons md-dark search-icon" onClick="searchContact()">search</span></button>
@@ -30,18 +32,18 @@
         </div>
     </div>
     <form id="modalForm" class="modal">
-        <div class="modal-content">
+        <div class="modal-content animate__animated animate__fadeIn">
             <div class="modal-close">
                 <button id="closeButton" class="close-icon"><span class="material-icons md-light" onClick="closeModal()">close</span></button>
             </div>
             <div class="modal-form">
-                <h3 class="modal-label">First Name</h3>
+                <h3 class="input-label">First Name</h3>
                 <input id="fname"  class="input-modal" type="text">
-                <h3 class="modal-label">Last Name</h3>
+                <h3 class="input-label">Last Name</h3>
                 <input id="lname" class="input-modal" type="text">
-                <h3 class="modal-label">Phone</h3>
+                <h3 class="input-label">Phone</h3>
                 <input id="phone" class="input-modal" type="text">
-                <h3 class="modal-label">Email</h3>
+                <h3 class="input-label">Email</h3>
                 <input id="email" class="input-modal" type="text">
                 <button id="trigger" class="modal-add" type="button">Submit</button>
             </div>
