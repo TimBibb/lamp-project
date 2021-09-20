@@ -1,4 +1,5 @@
 var urlBase = 'http://monkeyoclock.com/API';
+
 var extension = 'php';
 
 var userId = 0;
@@ -207,6 +208,7 @@ function addContact()
 				searchResults.innerHTML = ""
 				document.getElementById("contactSearchResult").innerHTML = "Contact Added";
 				searchResult.classList.remove("hide");
+				closeModal();
 				searchContact();
 			}
 		};
