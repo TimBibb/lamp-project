@@ -35,17 +35,8 @@ function doLogin() {
                     var jsonObject = JSON.parse( xhr.responseText );
 				    userId = jsonObject.UserID;
 
-                    if( userId < 1 && userId !== null)
-				    {		
-					    var loginResult = document.getElementById("loginResult");
-                        loginResult.innerHTML = "Login Failed!";
-                        loginResult.classList.remove("hide");
-					    return;
-				    }
-
                     firstName = jsonObject.FirstName;
 				    lastName = jsonObject.LastName;
-					userId = jsonObject.UserId;
 
 				    saveCookie();
 	
@@ -57,6 +48,7 @@ function doLogin() {
                     var loginResult = document.getElementById("loginResult");
                     loginResult.innerHTML = "Login Failed!";
                     loginResult.classList.remove("hide"); 
+					setTimeout(function(){hideAlertBannerL();}, 3000);
                 }
 			}
 		};
@@ -112,6 +104,7 @@ function doRegister()
                     var registerResult = document.getElementById("registerResult");
                     registerResult.innerHTML = "Registration Failed!";
                     registerResult.classList.remove("hide");
+					setTimeout(function(){hideAlertBannerR();}, 3000);
                 }
 			}
 		};
@@ -159,16 +152,10 @@ function readCookie()
 			userId = parseInt( tokens[1].trim() );
 		}
 	}
-
-
 	
 	if( userId < 0 )
 	{
 		window.location.href = "index.html";
-	}
-	else
-	{
-		// document.getElementById("userName").innerHTML = "Logged in as " + firstName + " " + lastName;
 	}
 }
 
@@ -181,15 +168,25 @@ function doLogout()
 	window.location.href = "index.html";
 }
 
-function addColor()
+function addContact()
 {
-	var newColor = document.getElementById("colorText").value;
-	document.getElementById("colorAddResult").innerHTML = "";
+	var searchResult = document.getElementById("contactSearchResult")
+	searchResult.innerHTML = "-";
+    searchResult.classList.add("hide");
 
-	var tmp = {color:newColor,userId,userId};
+	var firstName = document.getElementById("fname").value;
+	var lastName = document.getElementById("lname").value;
+	var phone = document.getElementById("phone").value;
+	var email = document.getElementById("email").value;
+
+	document.getElementById("contactSearchResult").innerHTML = "";
+
+	readCookie();
+
+	var tmp = {FirstName:firstName,LastName:lastName,Phone:phone,Email:email,UserID:userId};
 	var jsonPayload = JSON.stringify( tmp );
 
-	var url = urlBase + '/AddColor.' + extension;
+	var url = urlBase + '/AddContact.' + extension;
 	
 	var xhr = new XMLHttpRequest();
 	xhr.open("POST", url, true);
@@ -200,29 +197,72 @@ function addColor()
 		{
 			if (this.readyState == 4 && this.status == 200) 
 			{
-				document.getElementById("colorAddResult").innerHTML = "Color has been added";
+				var searchResults = document.getElementById("searchResults");
+				searchResults.innerHTML = ""
+				document.getElementById("contactSearchResult").innerHTML = "Contact Added";
+				searchResult.classList.remove("hide");
+				closeModal();
+				searchContact();
+				setTimeout(function(){hideAlertBanner();}, 3000);
 			}
 		};
 		xhr.send(jsonPayload);
 	}
 	catch(err)
 	{
-		document.getElementById("colorAddResult").innerHTML = err.message;
+		document.getElementById("contactSearchResult").innerHTML = err.message;
 	}
 	
 }
 
-function searchColor()
-{
-	var srch = document.getElementById("searchText").value;
-	document.getElementById("colorSearchResult").innerHTML = "";
-	
-	var colorList = "";
+function setValue(htmlID, value) {
+    document.getElementById(htmlID).value = value;
+}
 
-	var tmp = {search:srch,userId:userId};
+function clearAddContactForm() {
+    setValue("fname", "");
+    setValue("lname", "");
+    setValue("email", "");
+    setValue("phone", "");
+}
+
+function hideAlertBannerL() {
+	var loginResult = document.getElementById("loginResult")
+	loginResult.innerHTML = "-";
+    loginResult.classList.add("hide");
+  }
+
+function hideAlertBannerR() {
+	var registerResult = document.getElementById("registerResult")
+	registerResult.innerHTML = "-";
+	registerResult.classList.add("hide");
+}
+
+function hideAlertBanner() {
+	var searchResult = document.getElementById("contactSearchResult")
+	searchResult.innerHTML = "-";
+    searchResult.classList.add("hide");
+  }
+
+function editContact(contact)
+{
+	var searchResult = document.getElementById("contactSearchResult")
+	searchResult.innerHTML = "-";
+    searchResult.classList.add("hide");
+
+	var firstName = document.getElementById("fname").value;
+	var lastName = document.getElementById("lname").value;
+	var phone = document.getElementById("phone").value;
+	var email = document.getElementById("email").value;
+
+	document.getElementById("contactSearchResult").innerHTML = "";
+
+	readCookie();
+
+	var tmp = {ContactID:contact.ContactID, FirstName:firstName,LastName:lastName,Phone:phone,Email:email,UserID:userId};
 	var jsonPayload = JSON.stringify( tmp );
 
-	var url = urlBase + '/SearchColors.' + extension;
+	var url = urlBase + '/UpdateContact.' + extension;
 	
 	var xhr = new XMLHttpRequest();
 	xhr.open("POST", url, true);
@@ -233,26 +273,59 @@ function searchColor()
 		{
 			if (this.readyState == 4 && this.status == 200) 
 			{
-				document.getElementById("colorSearchResult").innerHTML = "Color(s) has been retrieved";
-				var jsonObject = JSON.parse( xhr.responseText );
-				
-				for( var i=0; i<jsonObject.results.length; i++ )
-				{
-					colorList += jsonObject.results[i];
-					if( i < jsonObject.results.length - 1 )
-					{
-						colorList += "<br />\r\n";
-					}
-				}
-				
-				document.getElementsByTagName("p")[0].innerHTML = colorList;
+				var searchResults = document.getElementById("searchResults");
+				searchResults.innerHTML = ""
+				document.getElementById("contactSearchResult").innerHTML = "Contact Updated";
+				searchResult.classList.remove("hide");
+				searchContact();
+				closeModal();
+				setTimeout(function(){hideAlertBanner();}, 3000);
 			}
 		};
 		xhr.send(jsonPayload);
 	}
 	catch(err)
 	{
-		document.getElementById("colorSearchResult").innerHTML = err.message;
+		document.getElementById("contactSearchResult").innerHTML = err.message;
+	}
+	
+}
+
+function removeContact(contactId)
+{
+	var searchResult = document.getElementById("contactSearchResult")
+	searchResult.innerHTML = "-";
+    searchResult.classList.add("hide");
+
+	readCookie();
+
+	var tmp = {contactID:contactId};
+	var jsonPayload = JSON.stringify( tmp );
+
+	var url = urlBase + '/DeleteContact.' + extension;
+	
+	var xhr = new XMLHttpRequest();
+	xhr.open("POST", url, true);
+	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+	try
+	{
+		xhr.onreadystatechange = function() 
+		{
+			if (this.readyState == 4 && this.status == 200) 
+			{
+				var searchResults = document.getElementById("searchResults");
+				searchResults.innerHTML = ""
+				document.getElementById("contactSearchResult").innerHTML = "Contact Deleted";
+				searchResult.classList.remove("hide");
+				searchContact();
+				setTimeout(function(){hideAlertBanner();}, 3000);
+			}
+		};
+		xhr.send(jsonPayload);
+	}
+	catch(err)
+	{
+		document.getElementById("contactSearchResult").innerHTML = err.message;
 	}
 	
 }
@@ -262,9 +335,6 @@ function searchContact()
 	var fName = document.getElementById("searchFirstName").value;
 	var lName = document.getElementById("searchLastName").value;
 
-	var searchResult = document.getElementById("contactSearchResult")
-	searchResult.innerHTML = "-";
-    searchResult.classList.add("hide");
 
 	readCookie();
 
@@ -284,9 +354,7 @@ function searchContact()
 			if (this.readyState == 4 && this.status == 200) 
 			{
 				var searchResults = document.getElementById("searchResults");
-				//searchResults.innerHTML = ""
-				document.getElementById("contactSearchResult").innerHTML = "Contact(s) Retrieved";
-				searchResult.classList.remove("hide");
+				searchResults.innerHTML = ""
 				var jsonObject = JSON.parse( xhr.responseText );
 				for( var i=0; i<jsonObject.length; i++ )
 				{
@@ -306,21 +374,69 @@ function searchContact()
 	}
 }
 
+function contactModal() {
+	var modalButton = document.getElementById('modalButton');
+	modalButton.addEventListener('click', openAddModal);
+
+}
+
+function openAddModal() {
+	var modal = document.getElementById('modalForm');
+	modal.style.display = 'block';
+
+	var trigger = document.getElementById('trigger');
+	trigger.addEventListener('click', addContact);
+	trigger.removeEventListener('click', function(){editContact(contact)});
+	clearAddContactForm();
+}
+
+function openUpdateModal(contact) {
+	var modal = document.getElementById('modalForm');
+	modal.style.display = 'block';
+	
+	setValue("fname",contact.FirstName);
+	setValue("lname",contact.LastName);
+	setValue("phone",contact.Phone);
+	setValue("email",contact.Email);
+
+	var trigger = document.getElementById('trigger');
+	trigger.addEventListener('click', function(){editContact(contact)});
+	trigger.removeEventListener('click', addContact);
+}
+
+function closeModal() {
+	var modal = document.getElementById('modalForm');
+	modal.style.display = 'none';
+}
+
 function createContactCard(contact) {
 
 	var cardContainer = document.createElement("div");
 	var nameElement = document.createElement("p");
 	var phoneElement = document.createElement("p");
 	var emailElement = document.createElement("p");
+	var editElement = document.createElement("button");
+	var removeElement = document.createElement("button");
 
 	cardContainer.classList.add("card");
 	nameElement.classList.add("card-name");
 	phoneElement.classList.add("card-phone-line");
+	editElement.classList.add("card-button");
+	removeElement.classList.add("card-button")
 
 	nameElement.innerHTML = contact.FirstName + " " + contact.LastName;
-	phoneElement.innerHTML = '<span class="card-phone">Phone:</span> ' + contact.Phone;
-	emailElement.innerHTML = '<span class="card-email">Email:</span> ' + contact.Email;
+	editElement.innerHTML = '<span class="material-icons-outlined">edit</span>';
+	removeElement.innerHTML = '<span class="material-icons-outlined">delete</span>';
+	phoneElement.innerHTML = '<span class="card-phone">Phone:</span>' + " " + contact.Phone;
+	emailElement.innerHTML = '<span class="card-email">Email:</span>' + " " + contact.Email;
 
+	
+
+	editElement.addEventListener('click', function(){openUpdateModal(contact)});
+	removeElement.addEventListener('click', function(){removeContact(contact.ContactID)});
+
+	cardContainer.appendChild(removeElement);
+	cardContainer.appendChild(editElement);
 	cardContainer.appendChild(nameElement);
 	cardContainer.appendChild(phoneElement);
 	cardContainer.appendChild(emailElement);

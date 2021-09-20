@@ -8,30 +8,48 @@
     <link rel="stylesheet" type="text/css" href="css/styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;1,600;1,700&family=Viga&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;1,300;1,600;1,700&family=Viga&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
 </head>
 <body>
-    <p id="contactSearchResult" class="message hide"></p>
+    <p id="contactSearchResult" class="animate__animated animate__tada message hide"></p>
     <div class="nav">
-        <!-- <div>
-            <img class="login-logo" src="images/loginLogo.svg" alt="Banana Peel">
-        </div> -->
-        <div class="bar" >
+        <div class="bar animate__animated animate__fadeInDown" >
             <input class="nav search-first" id="searchFirstName" type="text" placeholder="First Name"></input>
             <input class="nav search-last" id="searchLastName" type="text" placeholder="Last Name"></input>
             <button><span class="material-icons md-dark search-icon" onClick="searchContact()">search</span></button>
-            <button><span class="material-icons md-dark add-icon">person_add</span></button>
+            <button id="modalButton"><span class="material-icons md-dark add-icon" onClick="contactModal()">person_add</span></button>
         </div>
         <div>
-            <button><span class="material-icons md-light logout-icon">logout</span></button>
+            <button><span class="material-icons md-light logout-icon" onClick="doLogout()">logout</span></button>
         </div>
     </div>
     <div class="contact-container" >
         <div id="searchResults" class="contact-list" >  
         </div>
     </div>
-    
+    <form id="modalForm" class="modal">
+        <div class="modal-content animate__animated animate__fadeIn">
+            <div class="modal-close">
+                <button id="closeButton" class="close-icon"><span class="material-icons md-light" onClick="closeModal()">close</span></button>
+            </div>
+            <div class="modal-form">
+                <h3 class="input-label">First Name</h3>
+                <input id="fname"  class="input-modal" type="text">
+                <h3 class="input-label">Last Name</h3>
+                <input id="lname" class="input-modal" type="text">
+                <h3 class="input-label">Phone</h3>
+                <input id="phone" class="input-modal" type="text">
+                <h3 class="input-label">Email</h3>
+                <input id="email" class="input-modal" type="text">
+                <button id="trigger" class="modal-add" type="button">Submit</button>
+            </div>
+        </div>
+    </form>
+
     <script src="./js/md5.js"></script>
     <script src="./js/code.js"></script>
 </body>

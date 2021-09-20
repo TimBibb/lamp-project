@@ -6,7 +6,7 @@
 
 
 body {
-    background-color: #141301;
+    background-color:rgb(20, 19, 1);
     font-family: 'Open Sans', sans-serif;
     color: white;
     
@@ -17,7 +17,7 @@ body {
     align-items: center;
     flex-direction: column;
     justify-content: center;
-    height: 85vh;
+    height: 90vh;
 }
 
 .form-container {
@@ -44,6 +44,22 @@ body {
     box-shadow: 0 0 7px 1px #F2D443;
 }
 
+.input-modal {
+    display: block;
+    margin-bottom: 1.25rem;
+    border-radius: 8px;
+    border: none;
+    width: 100%;
+    padding: .75rem;
+    font-size: 1rem;
+    caret-color:#141301;
+}
+
+.input-modal:focus {
+    outline-style: none;
+    box-shadow: 0 0 7px 1px #F2D443;
+}
+
 .submit {
     background-color: yellowgreen;
     border-radius: 4px;
@@ -59,6 +75,26 @@ body {
 }
 
 .submit:active {
+    color: yellowgreen;
+}
+
+.modal-add {
+    width: 100%;
+    margin-top: 1.25rem;
+    background-color: yellowgreen;
+    border-radius: 4px;
+    border: none;
+    padding: .375rem;
+    font-family: 'Viga', sans-serif;
+    font-size: 1.375rem;
+    color: 141301;
+}
+
+.modal-add:hover {
+    color: white;
+}
+
+.modal-add:active {
     color: yellowgreen;
 }
 
@@ -87,6 +123,7 @@ body {
 }
 
 .message {
+    display: block;
     text-align: center;
     font-size: 1.125rem;
     margin-bottom: 1.5rem;
@@ -96,6 +133,8 @@ body {
     border-radius: 4px;
     background-color:#DA7422;
     width: 225px;
+    animation-delay: 1.2s;
+    transition: all 0.15s;
 }
 
 .hide {
@@ -105,13 +144,9 @@ body {
 .page-title {
     color: #F2D443;
     font-family: 'Viga', sans-serif;
-    font-size: 5rem;
+    font-size: 6rem;
     display: flex;
     justify-content: center;
-    padding-bottom: 1.5rem;
-}
-
-.logo {
     padding-bottom: 1.5rem;
 }
 
@@ -129,12 +164,12 @@ body {
 
 .bar {
     display: flex;
-    width: 70%;
+    width: 75%;
 }
 
 .search-first {
     border: none;
-    border-right: .125rem solid #141301;
+    border-right: .125rem solid rgb(20, 19, 1);
     border-radius: 8px;
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
@@ -172,18 +207,36 @@ body {
 .material-icons.md-light { 
     color: rgba(255, 255, 255, 1); 
     font-size: 36px;
-
+    transition: all 0.15s;
+    cursor: pointer;
 }
 
 .material-icons.md-dark { 
-    color:#141301;
+    color: rgb(20, 19, 1);
     font-size: 24px;
     transition: all 0.15s;
+    cursor: pointer;
 
+}
+
+.material-icons-outlined { 
+    color: rgb(32,32,22);
+    font-size: 24px;
+    transition: all 0.15s;
+    cursor: pointer;
+}
+
+.material-icons-outlined:hover {
+    color: #DA7422;
+    cursor: pointer;
 }
 
 .material-icons.md-dark:hover { 
     color: white;
+}
+
+.material-icons.md-light:hover { 
+    color: #DA7422;
 }
 
 .material-icons.md-light.md-inactive { 
@@ -195,9 +248,9 @@ body {
 }
 
 .search-icon {
-    color: #141301;
+    color: rgb(20, 19, 1);
     border: none;
-    border-left: 2px solid #141301;
+    border-left: 2px solid rgb(20, 19, 1);
     margin-top: 1rem;
     margin-bottom: 1rem;
     width: 100%;
@@ -210,7 +263,7 @@ body {
 .add-icon {
     color: #141301;
     border: none;
-    border-left: 2px solid #141301;
+    border-left: 2px solid rgb(20, 19, 1);
     border-top-right-radius: 8px;
     border-bottom-right-radius: 8px;
     margin-top: 1rem;
@@ -234,50 +287,56 @@ button {
     cursor: pointer;
 }
 
+.card-button {
+    float: right;
+    cursor: pointer;
+}
+
+
 #contactSearchResult {
     font-size: 1rem;
     text-align: center;
-    border-top-right-radius: 0;
-    border-top-left-radius: 0;
-    margin-bottom: 1rem;
+    margin-top: 1rem;
     background-color: #DA7422;
 }
 
 .card {
     font-family: 'Open Sans', sans-serif;
     text-align: left;
-    font-size: 20px;
+    font-size: 18px;
+    background-color: rgb(32,32,22);
     color: white;
-    border-top: 2px solid white;
-    border-top-right-radius: 1p;
+    border: none;
+    border-radius: 8px;
     margin: .375rem;
     padding: 1rem;
     box-sizing: border-box;
 }
 
 .card-name {
-    font-size: 36px; 
+    font-size: 26px; 
     font-weight: 700;
     margin-bottom: .75rem;
 }
 
 .card-phone {
-
-    font-size: 22px;
-    font-weight: 600;
+    font-size: 18px;
+    font-weight: 300;
+    font-style: italic;
 }
 
 .card-phone-line {
-    margin-bottom: .25rem;
+    margin-bottom: .5rem;
 }
 
 .card-email {
-    font-size: 22px;
-    font-weight: 600;
+    font-size: 18px;
+    font-weight: 300;
+    font-style: italic;
 }
 
 .contact-container {
-    margin: 0 auto;
+    margin: 50px auto;
     width: 100%;
     max-width: 1250px;
 }
@@ -287,7 +346,40 @@ button {
     grid-template-columns: repeat(auto-fill,minmax(400px,1fr));
 }
 
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, .8125);
+}
 
+.modal-content {
+    background-color: rgb(20, 19, 1);
+    margin: 15% auto;
+    border-radius: 8px;
+    padding: 3rem;
+    width: 100%;
+    max-width: 500px;
+}
+
+#addContactButton {
+    width: 100%;
+    margin-top: .5rem;
+}
+
+.modal-close {
+     display: flex;
+     justify-content: end;
+}
+
+.card-button {
+    position: relative;  
+}
 
 a {
     color: white;
