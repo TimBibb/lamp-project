@@ -369,7 +369,7 @@ function searchContact()
 				for( var i=0; i<jsonObject.length; i++ )
 				{
 					// TODO: add contact id to the search contacts api endpoint
-					var card = createContactCard(jsonObject.results[i]);
+					var card = createContactCard(jsonObject.results[0][i]);
 					searchResults.appendChild(card);
 				}
 			}
