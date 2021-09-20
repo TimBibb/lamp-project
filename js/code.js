@@ -1,5 +1,4 @@
 var urlBase = 'http://monkeyoclock.com/API';
-
 var extension = 'php';
 
 var userId = 0;
@@ -210,6 +209,7 @@ function addContact()
 				searchResult.classList.remove("hide");
 				closeModal();
 				searchContact();
+				setTimeout(function(){hideAlertBanner();}, 5000);
 			}
 		};
 		xhr.send(jsonPayload);
@@ -231,6 +231,12 @@ function clearAddContactForm() {
     setValue("email", "");
     setValue("phone", "");
 }
+
+function hideAlertBanner() {
+	var searchResult = document.getElementById("contactSearchResult")
+	searchResult.innerHTML = "-";
+    searchResult.classList.add("hide");
+  }
 
 function editContact(contact)
 {
@@ -267,6 +273,7 @@ function editContact(contact)
 				searchResult.classList.remove("hide");
 				searchContact();
 				closeModal();
+				setTimeout(function(){hideAlertBanner();}, 5000);
 			}
 		};
 		xhr.send(jsonPayload);
@@ -305,6 +312,7 @@ function removeContact(contactId)
 				document.getElementById("contactSearchResult").innerHTML = "Contact Deleted";
 				searchResult.classList.remove("hide");
 				searchContact();
+				setTimeout(function(){hideAlertBanner();}, 5000);
 			}
 		};
 		xhr.send(jsonPayload);
@@ -321,9 +329,6 @@ function searchContact()
 	var fName = document.getElementById("searchFirstName").value;
 	var lName = document.getElementById("searchLastName").value;
 
-	var searchResult = document.getElementById("contactSearchResult")
-	searchResult.innerHTML = "-";
-    searchResult.classList.add("hide");
 
 	readCookie();
 
@@ -414,19 +419,21 @@ function createContactCard(contact) {
 	removeElement.classList.add("card-button")
 
 	nameElement.innerHTML = contact.FirstName + " " + contact.LastName;
-	phoneElement.innerHTML = '<span class="card-phone">Phone:</span> ' + contact.Phone;
-	emailElement.innerHTML = '<span class="card-email">Email:</span> ' + contact.Email;
 	editElement.innerHTML = '<span class="material-icons-outlined">edit</span>';
 	removeElement.innerHTML = '<span class="material-icons-outlined">delete</span>';
+	phoneElement.innerHTML = '<span class="card-phone">Phone:</span>' + " " + contact.Phone;
+	emailElement.innerHTML = '<span class="card-email">Email:</span>' + " " + contact.Email;
+
+	
 
 	editElement.addEventListener('click', function(){openUpdateModal(contact)});
 	removeElement.addEventListener('click', function(){removeContact(contact.ContactID)});
 
+	cardContainer.appendChild(removeElement);
+	cardContainer.appendChild(editElement);
 	cardContainer.appendChild(nameElement);
 	cardContainer.appendChild(phoneElement);
 	cardContainer.appendChild(emailElement);
-	cardContainer.appendChild(editElement);
-	cardContainer.appendChild(removeElement);
 
 	return cardContainer;
 }

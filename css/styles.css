@@ -226,9 +226,14 @@ body {
 }
 
 .material-icons-outlined { 
-    color: rgba(255, 255, 255, 1); 
+    color: rgb(32,32,22);
     font-size: 24px;
     transition: all 0.15s;
+    cursor: pointer;
+}
+
+.material-icons-outlined:hover {
+    color: white;
     cursor: pointer;
 }
 
@@ -288,19 +293,23 @@ button {
     cursor: pointer;
 }
 
+.card-button {
+    float: right;
+    cursor: pointer;
+}
+
+
 #contactSearchResult {
     font-size: 1rem;
     text-align: center;
-    border-top-right-radius: 0;
-    border-top-left-radius: 0;
-    margin-bottom: 1rem;
+    margin-top: 1rem;
     background-color: #DA7422;
 }
 
 .card {
     font-family: 'Open Sans', sans-serif;
     text-align: left;
-    font-size: 20px;
+    font-size: 18px;
     background-color: rgb(32,32,22);
     color: white;
     border: none;
@@ -311,24 +320,25 @@ button {
 }
 
 .card-name {
-    font-size: 36px; 
+    font-size: 28px; 
     font-weight: 700;
     margin-bottom: .75rem;
 }
 
 .card-phone {
-
-    font-size: 22px;
-    font-weight: 600;
+    font-size: 18px;
+    font-weight: 300;
+    font-style: italic;
 }
 
 .card-phone-line {
-    margin-bottom: .25rem;
+    margin-bottom: .5rem;
 }
 
 .card-email {
-    font-size: 22px;
-    font-weight: 600;
+    font-size: 18px;
+    font-weight: 300;
+    font-style: italic;
 }
 
 .contact-container {
