@@ -346,7 +346,6 @@ function searchContact()
 	var fName = document.getElementById("searchFirstName").value;
 	var lName = document.getElementById("searchLastName").value;
 
-
 	readCookie();
 
 	var tmp = {FirstName: fName, LastName: lName, UserID: userId};
@@ -370,8 +369,7 @@ function searchContact()
 				for( var i=0; i<jsonObject.length; i++ )
 				{
 					// TODO: add contact id to the search contacts api endpoint
-
-					var card = createContactCard(jsonObject[i]);
+					var card = createContactCard(jsonObject.results[i]);
 					searchResults.appendChild(card);
 				}
 			}
