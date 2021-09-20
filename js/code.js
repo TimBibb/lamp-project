@@ -37,7 +37,8 @@ function doLogin() {
 
                     firstName = jsonObject.FirstName;
 				    lastName = jsonObject.LastName;
-
+					console.log(firstName);
+					console.log(lastName);
 				    saveCookie();
 	
 				    window.location.href = "contact.html";
