@@ -397,9 +397,8 @@ function openAddModal() {
 
 	var trigger = document.getElementById('trigger');
 	trigger.replaceWith(trigger.cloneNode(true));
-	// trigger.removeEventListener('click', addContact, false);
-	// trigger.removeEventListener('click', editContact, false);
-	trigger.addEventListener('click', addContact, false);
+	trigger = document.getElementById('trigger');
+	trigger.addEventListener('click', addContact);
 	clearAddContactForm();
 }
 
@@ -412,12 +411,11 @@ function openUpdateModal(contact) {
 	setValue("lname",contact.LastName);
 	setValue("phone",contact.Phone);
 	setValue("email",contact.Email);
-
+	
 	var trigger = document.getElementById('trigger');
-	trigger.replaceWith(trigger.cloneNode(true))
-	// trigger.removeEventListener('click', addContact, false);
-	// trigger.removeEventListener('click', editContact, false);
-	trigger.addEventListener('click', function(){editContact(contact)}, false);
+	trigger.replaceWith(trigger.cloneNode(true));
+	trigger = document.getElementById('trigger');
+	trigger.addEventListener('click', function(){editContact(contact)});
 }
 
 function closeModal() {
