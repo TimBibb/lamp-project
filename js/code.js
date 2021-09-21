@@ -6,6 +6,11 @@ var firstName = "";
 var lastName = "";
 var contacts = {};
 
+if (window.location.pathname == "/contact.html")
+{
+	searchContact();
+}
+
 function doLogin() {
     var login = document.getElementById("loginName").value;
 	var password = document.getElementById("loginPassword").value;
@@ -74,6 +79,8 @@ function doLogin() {
 
 function doRegister()
 {
+	if (!isRegisterValid()) return; 
+
 	userId = 0;
 	firstName = "";
 	lastName = "";
@@ -181,7 +188,9 @@ function doLogout()
 }
 
 function addContact()
-{
+{	
+	if (!isModalValid()) return;
+
 	var searchResult = document.getElementById("contactSearchResult")
 	searchResult.innerHTML = "-";
     searchResult.classList.add("hide");
@@ -209,11 +218,11 @@ function addContact()
 		{
 			if (this.readyState == 4 && this.status == 200) 
 			{
+				closeModal();
 				var searchResults = document.getElementById("searchResults");
 				searchResults.innerHTML = ""
 				document.getElementById("contactSearchResult").innerHTML = "Contact Added";
-				searchResult.classList.remove("hide");
-				closeModal();
+				searchResults.classList.remove("hide");
 				searchContact();
 				setTimeout(function(){hideAlertBanner();}, 3000);
 			}
@@ -250,6 +259,12 @@ function hideAlertBannerR() {
 	registerResult.classList.add("hide");
 }
 
+function hideAlertBannerM() {
+	var modalResult = document.getElementById("modalResult");
+	modalResult.innerHTML = "-";
+    modalResult.classList.add("hide");
+  }
+
 function hideAlertBanner() {
 	var searchResult = document.getElementById("contactSearchResult")
 	searchResult.innerHTML = "-";
@@ -258,6 +273,8 @@ function hideAlertBanner() {
 
 function editContact(contact)
 {
+	if (!isModalValid()) return;
+
 	var searchResult = document.getElementById("contactSearchResult")
 	searchResult.innerHTML = "-";
     searchResult.classList.add("hide");
@@ -288,7 +305,7 @@ function editContact(contact)
 				var searchResults = document.getElementById("searchResults");
 				searchResults.innerHTML = ""
 				document.getElementById("contactSearchResult").innerHTML = "Contact Updated";
-				searchResult.classList.remove("hide");
+				searchResults.classList.remove("hide");
 				clearAddContactForm();
 				closeModal();
 				setTimeout(function(){hideAlertBanner();}, 3000);
@@ -329,7 +346,7 @@ function removeContact(contactId)
 				var searchResults = document.getElementById("searchResults");
 				searchResults.innerHTML = ""
 				document.getElementById("contactSearchResult").innerHTML = "Contact Deleted";
-				searchResult.classList.remove("hide");
+				searchResults.classList.remove("hide");
 				searchContact();
 				setTimeout(function(){hideAlertBanner();}, 3000);
 			}
@@ -370,8 +387,6 @@ function searchContact()
 				var jsonObject = JSON.parse( xhr.responseText );
 				for( var i=0; i<jsonObject.results.length; i++ )
 				{
-					// TODO: add contact id to the search contacts api endpoint
-					console.log(jsonObject.results[i]);
 					var card = createContactCard(jsonObject.results[i]);
 					searchResults.appendChild(card);
 				}
@@ -456,7 +471,105 @@ function createContactCard(contact) {
 	cardContainer.appendChild(phoneElement);
 	cardContainer.appendChild(emailElement);
 
-	console.log(contact.FirstName);
-
 	return cardContainer;
+}
+
+function isModalValid() 
+{
+	var firstName = document.getElementById("fname").value;
+	var lastName = document.getElementById("lname").value;
+	var phone = document.getElementById("phone").value;
+	var email = document.getElementById("email").value;
+
+	var modalResult = document.getElementById("modalResult");
+	modalResult.innerHTML = "-";
+    modalResult.classList.add("hide");
+
+	if (firstName === null || firstName.trim() == "") {
+		modalResult = document.getElementById("modalResult");
+		modalResult.innerHTML = "";
+		document.getElementById("modalResult").innerHTML = "First Name Required";
+		modalResult.classList.remove("hide");
+		setTimeout(function(){hideAlertBannerM();}, 3000);
+		return false;
+	}
+
+	if (lastName == null || lastName.trim() == "") {
+		modalResult = document.getElementById("modalResult");
+		modalResult.innerHTML = "";
+		document.getElementById("modalResult").innerHTML = "Last Name Required";
+		modalResult.classList.remove("hide");
+		setTimeout(function(){hideAlertBannerM();}, 3000);
+		return false;
+	}
+
+	if (phone == null || phone.trim() == "") {
+		modalResult = document.getElementById("modalResult");
+		modalResult.innerHTML = "";
+		document.getElementById("modalResult").innerHTML = "Phone Required";
+		modalResult.classList.remove("hide");
+		setTimeout(function(){hideAlertBannerM();}, 3000);
+		return false;
+	}
+
+	if (email == null || email.trim() == "") {
+		modalResult = document.getElementById("modalResult");
+		modalResult.innerHTML = "";
+		document.getElementById("modalResult").innerHTML = "Email Required";
+		modalResult.classList.remove("hide");
+		setTimeout(function(){hideAlertBannerM();}, 3000);
+		return false;
+	}
+
+	return true;
+}
+
+function isRegisterValid() 
+{
+	var firstName = document.getElementById("firstName").value;
+	var lastName = document.getElementById("lastName").value;
+	var login = document.getElementById("login").value;
+	var password = document.getElementById("password").value;
+
+	var registerResult = document.getElementById("registerResult");
+	registerResult.innerHTML = "-";
+    registerResult.classList.add("hide");
+
+	if (firstName === null || firstName.trim() == "") {
+		registerResult = document.getElementById("registerResult");
+		registerResult.innerHTML = "";
+		document.getElementById("registerResult").innerHTML = "First Name Required";
+		registerResult.classList.remove("hide");
+		setTimeout(function(){hideAlertBannerR();}, 3000);
+		return false;
+	}
+
+	if (lastName == null || lastName.trim() == "") {
+		registerResult = document.getElementById("registerResult");
+		registerResult.innerHTML = "";
+		document.getElementById("registerResult").innerHTML = "Last Name Required";
+		registerResult.classList.remove("hide");
+		setTimeout(function(){hideAlertBannerR();}, 3000);
+		return false;
+	}
+
+	if (login == null || login.trim() == "") {
+		registerResult = document.getElementById("registerResult");
+		registerResult.innerHTML = "";
+		document.getElementById("registerResult").innerHTML = "Username Required";
+		registerResult.classList.remove("hide");
+		setTimeout(function(){hideAlertBannerR();}, 3000);
+		return false;
+	}
+
+	if (password == null || password.trim() == "") {
+		registerResult = document.getElementById("registerResult");
+		registerResult.innerHTML = "";
+		document.getElementById("registerResult").innerHTML = "Password Required";
+		registerResult.classList.remove("hide");
+		setTimeout(function(){hideAlertBannerR();}, 3000);
+		return false;
+	}
+
+	return true;
 }

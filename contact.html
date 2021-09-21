@@ -18,6 +18,7 @@
     <p id="contactSearchResult" class="animate__animated animate__tada message hide"></p>
     <div class="nav">
         <div class="bar animate__animated animate__fadeInDown" >
+            <img class="bar-logo" src="/images/loginLogo.svg" alt="Banana Peel Logo">
             <input class="nav search-first" id="searchFirstName" type="text" placeholder="First Name"></input>
             <input class="nav search-last" id="searchLastName" type="text" placeholder="Last Name"></input>
             <button><span class="material-icons md-dark search-icon" onClick="searchContact()">search</span></button>
@@ -34,7 +35,8 @@
     <form id="modalForm" class="modal">
         <div class="modal-content animate__animated animate__fadeIn">
             <div class="modal-close">
-                <button id="closeButton" class="close-icon"><span class="material-icons md-light" onClick="closeModal()">close</span></button>
+                <p id="modalResult" class="animate__animated animate__shakeX modal-message hide"></p>
+                <button id="closeButton" class="close-icon" type="button"><span class="material-icons md-light" onClick="closeModal()">close</span></button>
             </div>
             <div class="modal-form">
                 <h3 class="input-label">First Name</h3>
@@ -42,9 +44,9 @@
                 <h3 class="input-label">Last Name</h3>
                 <input id="lname" class="input-modal" type="text">
                 <h3 class="input-label">Phone</h3>
-                <input id="phone" class="input-modal" type="text">
+                <input id="phone" class="input-modal" type="tel">
                 <h3 class="input-label">Email</h3>
-                <input id="email" class="input-modal" type="text">
+                <input id="email" class="input-modal" type="email">
                 <button id="trigger" class="modal-add" type="button">Submit</button>
             </div>
         </div>

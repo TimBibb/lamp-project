@@ -137,6 +137,20 @@ body {
     transition: all 0.15s;
 }
 
+.modal-message {
+    display: block;
+    text-align: center;
+    font-size: 1.125rem;
+    margin-bottom: 1.5rem;
+    margin-right: 4rem;
+    padding: .5rem;
+    border-radius: 4px;
+    background-color:#DA7422;
+    width: 225px;
+    animation-delay: 1.2s;
+    transition: all 0.15s;
+}
+
 .hide {
     opacity: 0;
 }
@@ -164,7 +178,18 @@ body {
 
 .bar {
     display: flex;
-    width: 75%;
+    width: 100%;
+    max-width: 700px;
+    padding: 0 2rem;
+}
+
+.bar-logo {
+    position: absolute;
+    transform: rotate(-60deg);
+    left: -8px;
+    bottom: 16px;
+    width: 100px;
+    height: 75px;
 }
 
 .search-first {
@@ -342,6 +367,7 @@ button {
 }
 
 .contact-list {
+    padding: 0 1.69rem;
     display: grid;
     grid-template-columns: repeat(auto-fill,minmax(400px,1fr));
 }
@@ -354,15 +380,14 @@ button {
     top: 0;
     height: 100%;
     width: 100%;
-    overflow: auto;
     background-color: rgba(0, 0, 0, .8125);
 }
 
 .modal-content {
     background-color: rgb(20, 19, 1);
-    margin: 15% auto;
+    margin: 125px auto;
     border-radius: 8px;
-    padding: 3rem;
+    padding: 2.5rem;
     width: 100%;
     max-width: 500px;
 }
