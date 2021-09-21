@@ -1,38 +1,38 @@
 <?php
 
-$inData = getRequestInfo();
-$contactId = $inData["ContactID"];
+	$inData = getRequestInfo();
+	$contactId = $inData["contactID"];
 
-// Create connection
-$conn = new mysqli("localhost","TheBeast","WeLoveCOP4331","smallProject");
-
-// Check connection
-if ($conn->connect_error) 
+	// Create connection
+	$conn = new mysqli("localhost","TheBeast","WeLoveCOP4331","smallProject");
+	// Check connection
+	if ($conn->connect_error) 
 	{
 		returnWithError( $conn->connect_error );
-	} 
+	} else
+	{
+		// sql to delete a record
+		$stmt = $conn->prepare("DELETE FROM CONTACTS WHERE ContactID=?;");
+		$stmt->bind_param("i", $contactId);
+		$stmt->execute();
 
-// sql to delete a record
-$stmt = $conn->prepare("DELETE FROM CONTACTS WHERE ContactID=?;");
-$stmt->bind_param("i", $contactId);
-$stmt->execute();
+		$stmt->close();
+		$conn->close();
+		returnWithError("");
+	}
 
-$stmt->close();
-$conn->close();
-returnWithError("");
-
-function getRequestInfo()
+	function getRequestInfo()
 	{
 		return json_decode(file_get_contents('php://input'), true);
 	}
 
-function sendResultInfoAsJson( $obj )
+	function sendResultInfoAsJson( $obj )
 	{
 		header('Content-type: application/json');
 		echo $obj;
 	}
 
-function returnWithError( $err )
+	function returnWithError( $err )
 	{
 		$retValue = '{"error":"' . $err . '"}';
 		sendResultInfoAsJson( $retValue );
