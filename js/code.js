@@ -395,8 +395,9 @@ function openAddModal() {
 	var modal = document.getElementById('modalForm');
 	modal.style.display = 'block';
 
-	var trigger = document.getElementById('trigger');
-	trigger.addEventListener('click', addContact);
+	var oldTrigger = document.getElementById('trigger');
+	var trigger = old_element.cloneNode(true);
+	oldTrigger.parentNode.replaceChild(trigger, oldTrigger);
 	trigger.removeEventListener('click', function(){editContact(contact)});
 	clearAddContactForm();
 }
@@ -411,9 +412,10 @@ function openUpdateModal(contact) {
 	setValue("phone",contact.Phone);
 	setValue("email",contact.Email);
 
-	var trigger = document.getElementById('trigger');
+	var oldTrigger = document.getElementById('trigger');
+	var trigger = old_element.cloneNode(true);
+	oldTrigger.parentNode.replaceChild(trigger, oldTrigger);
 	trigger.addEventListener('click', function(){editContact(contact)});
-	trigger.removeEventListener('click', addContact);
 }
 
 function closeModal() {
