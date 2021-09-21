@@ -173,6 +173,7 @@ function doLogout()
 	userId = 0;
 	firstName = "";
 	lastName = "";
+	var date = new Date();
 	document.cookie = "firstName=" + firstName + ";expires=" + date.toGMTString();
 	document.cookie = "lastName=" + lastName + ";expires=" + date.toGMTString();
 	document.cookie = "userId=" + userId + ";expires=" + date.toGMTString();
