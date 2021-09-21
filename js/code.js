@@ -395,10 +395,10 @@ function openAddModal() {
 	var modal = document.getElementById('modalForm');
 	modal.style.display = 'block';
 
-	var oldTrigger = document.getElementById('trigger');
-	var trigger = old_element.cloneNode(true);
-	oldTrigger.parentNode.replaceChild(trigger, oldTrigger);
-	trigger.removeEventListener('click', function(){editContact(contact)});
+	var trigger = document.getElementById('trigger');
+	trigger.removeEventListener('click', addContact);
+	trigger.removeEventListener('click', editContact);
+	trigger.addEventListener('click', addContact);
 	clearAddContactForm();
 }
 
@@ -412,9 +412,9 @@ function openUpdateModal(contact) {
 	setValue("phone",contact.Phone);
 	setValue("email",contact.Email);
 
-	var oldTrigger = document.getElementById('trigger');
-	var trigger = old_element.cloneNode(true);
-	oldTrigger.parentNode.replaceChild(trigger, oldTrigger);
+	var trigger = document.getElementById('trigger');
+	trigger.removeEventListener('click', addContact);
+	trigger.removeEventListener('click', editContact);
 	trigger.addEventListener('click', function(){editContact(contact)});
 }
 
