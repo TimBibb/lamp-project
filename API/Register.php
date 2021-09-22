@@ -21,6 +21,7 @@
 		if( $row = $result->fetch_assoc()  )
 		{
 			returnWithError("Login already in use!");
+			return;
 		}
 		$stmt->close();
 
