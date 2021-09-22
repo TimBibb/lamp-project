@@ -115,7 +115,7 @@ function doRegister()
                 {
 					var jsonObject = JSON.parse( xhr.responseText );
 					
-					if (jsonObject.err === "Login already in use!")
+					if (jsonObject.error === "Login already in use!")
 					{
 						registerResult = document.getElementById("registerResult");
 						registerResult.innerHTML = "";
