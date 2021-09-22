@@ -119,7 +119,7 @@ function doRegister()
 					{
 						registerResult = document.getElementById("registerResult");
 						registerResult.innerHTML = "";
-						document.getElementById("registerResult").innerHTML = "Password Required";
+						document.getElementById("registerResult").innerHTML = jsonObject.error;
 						registerResult.classList.remove("hide");
 						setTimeout(function(){hideAlertBannerR();}, 3000);
 						
