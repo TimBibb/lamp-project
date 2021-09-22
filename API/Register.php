@@ -13,6 +13,17 @@
 	}
 	else
 	{
+		$stmt = $conn->prepare("SELECT Login FROM USERS U WHERE U.Login=?");
+		$stmt->bind_param("s", $login);
+		$stmt->execute();
+		$result = $stmt->get_result();
+
+		if( $row = $result->fetch_assoc()  )
+		{
+			returnWithError("Login already in use!");
+		}
+		$stmt->close();
+
 		$stmt = $conn->prepare("INSERT into USERS (FirstName,LastName,Login,Password) VALUES(?,?,?,?)");
 		$stmt->bind_param("ssss", $firstName, $lastName, $login, $password);
 		$stmt->execute();
