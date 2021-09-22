@@ -124,8 +124,10 @@ function doRegister()
 						setTimeout(function(){hideAlertBannerR();}, 3000);
 						
 					}
-
-                    window.location.href = "index.html";
+					else
+					{
+						window.location.href = "index.html";
+					}
                 }
                 else
                 {
