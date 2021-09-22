@@ -23,7 +23,6 @@
 			$stmt->close();
 			$conn->close();
 			returnWithError("Login already in use!");
-			return;
 		}
 		$stmt->close();
 
