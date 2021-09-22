@@ -13,12 +13,28 @@
 	}
 	else
 	{
-		$stmt = $conn->prepare("INSERT into USERS (FirstName,LastName,Login,Password) VALUES(?,?,?,?)");
-		$stmt->bind_param("ssss", $firstName, $lastName, $login, $password);
+		$stmt = $conn->prepare("SELECT Login FROM USERS U WHERE U.Login=?");
+		$stmt->bind_param("s", $login);
 		$stmt->execute();
-		$stmt->close();
-		$conn->close();
-		returnWithError("");
+		$result = $stmt->get_result();
+
+		if( $row = $result->fetch_assoc()  )
+		{
+			$stmt->close();
+			$conn->close();
+			returnWithError("Login already in use!");
+		}
+		else
+		{
+			$stmt->close();
+
+			$stmt = $conn->prepare("INSERT into USERS (FirstName,LastName,Login,Password) VALUES(?,?,?,?)");
+			$stmt->bind_param("ssss", $firstName, $lastName, $login, $password);
+			$stmt->execute();
+			$stmt->close();
+			$conn->close();
+			returnWithError("");
+		}
 	}
 	
 	function getRequestInfo()

@@ -113,7 +113,21 @@ function doRegister()
 			{
 				if (this.status == 200)
                 {
-                    window.location.href = "index.html";
+					var jsonObject = JSON.parse( xhr.responseText );
+					
+					if (jsonObject.error === "Login already in use!")
+					{
+						registerResult = document.getElementById("registerResult");
+						registerResult.innerHTML = "";
+						document.getElementById("registerResult").innerHTML = jsonObject.error;
+						registerResult.classList.remove("hide");
+						setTimeout(function(){hideAlertBannerR();}, 3000);
+						
+					}
+					else
+					{
+						window.location.href = "index.html";
+					}
                 }
                 else
                 {
