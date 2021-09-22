@@ -113,6 +113,18 @@ function doRegister()
 			{
 				if (this.status == 200)
                 {
+					var jsonObject = JSON.parse( xhr.responseText );
+					
+					if (jsonObject.err === "Login already in use!")
+					{
+						registerResult = document.getElementById("registerResult");
+						registerResult.innerHTML = "";
+						document.getElementById("registerResult").innerHTML = "Password Required";
+						registerResult.classList.remove("hide");
+						setTimeout(function(){hideAlertBannerR();}, 3000);
+						
+					}
+
                     window.location.href = "index.html";
                 }
                 else
