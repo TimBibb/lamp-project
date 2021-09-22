@@ -24,14 +24,17 @@
 			$conn->close();
 			returnWithError("Login already in use!");
 		}
-		$stmt->close();
+		else
+		{
+			$stmt->close();
 
-		$stmt = $conn->prepare("INSERT into USERS (FirstName,LastName,Login,Password) VALUES(?,?,?,?)");
-		$stmt->bind_param("ssss", $firstName, $lastName, $login, $password);
-		$stmt->execute();
-		$stmt->close();
-		$conn->close();
-		returnWithError("");
+			$stmt = $conn->prepare("INSERT into USERS (FirstName,LastName,Login,Password) VALUES(?,?,?,?)");
+			$stmt->bind_param("ssss", $firstName, $lastName, $login, $password);
+			$stmt->execute();
+			$stmt->close();
+			$conn->close();
+			returnWithError("");
+		}
 	}
 	
 	function getRequestInfo()
